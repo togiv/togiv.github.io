@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>coding on Ferry</title>
+    <link>https://togiv.github.io/tags/coding/</link>
+    <description>Recent content in coding on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Sep 2019 22:16:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>折纸</title>
+      <link>https://togiv.github.io/2019/09/%E6%8A%98%E7%BA%B8/</link>
+      <pubDate>Mon, 30 Sep 2019 22:16:49 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%8A%98%E7%BA%B8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>栈中最小数字</title>
+      <link>https://togiv.github.io/2019/09/%E6%A0%88%E4%B8%AD%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/</link>
+      <pubDate>Mon, 30 Sep 2019 22:15:37 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%A0%88%E4%B8%AD%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>朋友圈问题</title>
+      <link>https://togiv.github.io/2019/09/%E6%9C%8B%E5%8F%8B%E5%9C%88%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 30 Sep 2019 22:13:52 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%9C%8B%E5%8F%8B%E5%9C%88%E9%97%AE%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

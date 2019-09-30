@@ -6,10 +6,19 @@
     <description>Recent content in 链表 on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Sep 2019 11:38:26 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Sep 2019 22:20:38 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>栈结构单链表</title>
+      <link>https://togiv.github.io/2019/09/%E6%A0%88%E7%BB%93%E6%9E%84%E5%8D%95%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Mon, 30 Sep 2019 22:20:38 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%A0%88%E7%BB%93%E6%9E%84%E5%8D%95%E9%93%BE%E8%A1%A8/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>树的链表表示</title>
