@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="深度遍历">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图的深度优先遍历">
+<meta name="twitter:title" content="图的深度优先遍历">
+<meta property="og:url" content="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-30T11:35:34">
+  
+  
+    <meta property="article:modified_time" content="2019-09-30T11:35:34">
+  
+  
+  
+    
+      <meta property="article:section" content="算法">
+    
+      <meta property="article:section" content="图">
+    
+  
+  
+    
+      <meta property="article:tag" content="图">
+    
+      <meta property="article:tag" content="深度遍历">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>图的深度优先遍历</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      图的深度优先遍历
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-30T11:35:34&#43;08:00">
+        
+  
+  
+  
+  
+    30 九月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e5%9b%be">图</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h3 id="图的深度优先遍历-dfs">图的深度优先遍历(dfs)</h3>
+
+<p>图的深度优先遍历和宽度优先遍历类似
+<em>首先创建一个<code>集合或者数组</code>标记节点有没有被遍历过</em>
++ 与图的宽度优先遍历不同的是，深度优先遍历从根节点出发，一条道走到黑才会回来走另一条路，这也称之为<code>回溯</code>，如果该节点的直接后继节点没被遍历过，就将此节点的<code>全部后继节点</code>加入<code>堆</code>,加入堆表示<code>即将被遍历</code>，堆结构是先进后出的结构，先加入的节点会后遍历，符合深度优先遍历的规则
++ 接着从堆中弹出一个节点，先打印该节点，再将该节点该节点的所有直接后继放入堆中,重复此过程直到后继节点为空或全部加入到堆中。</p>
+
+<h3 id="完整代码-邻接矩阵表示">完整代码（邻接矩阵表示）</h3>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+
+using namespace std;
+
+typedef int T;                    //顶点的值类型 int, char, double and so on
+struct Node
+{
+    T value;                      //顶点值
+    int numbers;                  //顶点编号
+    bool operator==(const Node &amp;other)
+    {
+        if((this-&gt;numbers==other.numbers)&amp;&amp;(this-&gt;value==other.value))
+            return true;
+        else
+            return false;
+    }
+    Node(int a1=0,int a2=0)
+    {
+        numbers=a1;
+        value=a2;
+    }
+};
+
+struct Edge
+{
+    int num1;                     //起始顶点
+    int num2;                     //终止顶点
+    int weight;                   //边所对应的权值
+};
+
+class Graph
+{
+private:
+    int vertex_nums;               //顶点数
+    int edge_nums;                 //边数
+    vector&lt;Node&gt; vertex;           //顶点表，强制设为编号从0开始
+    vector&lt;Edge&gt; edge;             //边表
+    vector&lt;vector&lt;int&gt; &gt; edge_maze;    //邻接矩阵，存储各个顶点连接关系
+public:
+    Graph(int n1=10,int n2=10)
+    {
+        vertex_nums=n1;
+        edge_nums=n2;
+        for(int i=0;i&lt;vertex_nums;i++)
+        {
+            Node a;
+            a.numbers=i;
+            a.value=0;
+            vertex.push_back(a);
+        }
+
+        for(int i=0;i&lt;vertex_nums;i++)    //邻接矩阵初始化
+        {
+            vector&lt;int&gt; temp(vertex_nums,0);
+            edge_maze.push_back(temp);
+        }
+
+        cout&lt;&lt;&quot;please input the edges about the graph: vertex_number1 vertex_number2 weight&quot;&lt;&lt;endl;
+        int x,y,z;
+        for(int i=0;i&lt;edge_nums;i++)
+        {
+            cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;
+            Edge temp_edge;
+            temp_edge.num1=x;
+            temp_edge.num2=y;
+            temp_edge.weight=z;
+            edge.push_back(temp_edge);
+            edge_maze[x][y]=1;
+            edge_maze[y][x]=1;
+        }
+    }
+
+    void print_edge_maze()
+    {
+        cout&lt;&lt;endl;
+        cout&lt;&lt;&quot;输出邻接矩阵&quot;&lt;&lt;endl;
+        cout&lt;&lt;&quot;   &quot;;
+        for(int i=0;i&lt;vertex_nums;i++)
+            cout&lt;&lt;&quot;v&quot;&lt;&lt;i&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;endl;
+
+        for(int i=0;i&lt;vertex_nums;i++)
+        {
+            cout&lt;&lt;&quot;v&quot;&lt;&lt;i&lt;&lt;&quot;  &quot;;
+            for(int j=0;j&lt;vertex_nums;j++)
+            {
+                cout&lt;&lt;edge_maze[i][j]&lt;&lt;&quot;  &quot;;
+            }
+            cout&lt;&lt;endl;
+        }
+    }
+
+    void print_edge_vec()
+    {
+        cout&lt;&lt;endl;
+        cout&lt;&lt;&quot;输出边表：&quot;&lt;&lt;endl;
+        cout&lt;&lt;&quot;起始顶点--&gt;结束顶点  边权值&quot;&lt;&lt;endl;
+        for(int i=0;i&lt;edge_nums;i++)
+        {
+            cout&lt;&lt;&quot;   v&quot;&lt;&lt;edge[i].num1&lt;&lt;&quot;   --&gt;&quot;&lt;&lt;&quot;   v&quot;&lt;&lt;edge[i].num2&lt;&lt;&quot;        &quot;&lt;&lt;edge[i].weight&lt;&lt;endl;
+        }
+    }
+
+    //基于DFS非递归遍历图
+    void DFS_Graph_noniterator(int start_vertex_num=0)
+    {
+        vector&lt;int&gt; if_output(vertex_nums,0);     //指示顶点是否被遍历
+        Node first(start_vertex_num);
+        stack&lt;Node&gt; s;
+
+        cout&lt;&lt;endl;
+        cout&lt;&lt;&quot;遍历顶点路径如下&quot;&lt;&lt;endl;
+        cout&lt;&lt;&quot;v&quot;&lt;&lt;first.numbers&lt;&lt;&quot;----&gt;&quot;;
+        if_output[start_vertex_num]=1;            //标记已被访问
+        s.push(first);
+
+        while(!s.empty())
+        {
+            Node temp=s.top();
+            int i;
+            for(i=0;i&lt;edge_nums;i++)
+            {
+                if((edge[i].num1==temp.numbers)&amp;&amp;(if_output[edge[i].num2]==0))
+                {
+                    cout&lt;&lt;&quot;v&quot;&lt;&lt;edge[i].num2&lt;&lt;&quot;----&gt;&quot;;
+                    if_output[edge[i].num2]=1;            //标记已被访问
+                    Node push_node(edge[i].num2);
+                    s.push(push_node);
+                    break;
+                }
+                else if((edge[i].num2==temp.numbers)&amp;&amp;(if_output[edge[i].num1]==0))
+                {
+                    cout&lt;&lt;&quot;v&quot;&lt;&lt;edge[i].num1&lt;&lt;&quot;----&gt;&quot;;
+                    if_output[edge[i].num1]=1;            //标记已被访问
+                    Node push_node(edge[i].num1);
+                    s.push(push_node);
+                    break;
+                }
+                else
+                    continue;
+            }
+            if(i==edge_nums)
+                s.pop();
+        }
+        cout&lt;&lt;&quot;end&quot;&lt;&lt;endl;
+    }
+
+
+    //基于BFS非递归遍历图
+    void BFS_Graph_nonrecursive(int start_vertex_num=0)
+    {
+        vector&lt;int&gt; if_output(vertex_nums,0);     //指示顶点是否被遍历
+        Node first(start_vertex_num);
+        queue&lt;Node&gt; qu;
+        qu.push(first);
+        if_output[start_vertex_num]=1;            //入队即表示即将被遍历
+        cout&lt;&lt;endl;
+        cout&lt;&lt;&quot;遍历顶点路径如下&quot;&lt;&lt;endl;
+        while(!qu.empty())
+        {
+            Node temp=qu.front();
+            qu.pop();
+            cout&lt;&lt;&quot;v&quot;&lt;&lt;temp.numbers&lt;&lt;&quot;----&gt;&quot;;
+
+            //遍历所有边，找到与队列头结点连接的顶点，将所有与头顶点连接的顶点加入队列
+            for(int i=0;i&lt;edge_nums;i++)
+            {
+                if(edge[i].num1==temp.numbers)
+                {
+                    if(if_output[edge[i].num2]==0)           //未被遍历
+                    {
+                        Node temp_node(edge[i].num2);        //将连接点加入队列
+                        qu.push(temp_node);
+                        if_output[edge[i].num2]=1;           //入队即表示即将被遍历
+                    }
+                }
+                else if(edge[i].num2==temp.numbers)
+                {
+                    if(if_output[edge[i].num1]==0)           //未被遍历
+                    {
+                        Node temp_node(edge[i].num1);        //将连接点加入队列
+                        qu.push(temp_node);
+                        if_output[edge[i].num1]=1;
+                    }
+                }
+                else
+                    continue;
+            }
+        }
+        cout&lt;&lt;&quot;end&quot;&lt;&lt;endl;
+        cout&lt;&lt;&quot;遍历结束&quot;&lt;&lt;endl;
+
+    }
+};
+
+int main()
+{
+    Graph graph(8,10);
+    graph.print_edge_vec();
+    graph.print_edge_maze();
+    //graph.BFS_Graph_nonrecursive();
+    graph.DFS_Graph_noniterator();
+    return 0;
+}
+</code></pre>
+
+<p>原文地址：<a href="https://blog.csdn.net/weixin_43011522/article/details/82495556">https://blog.csdn.net/weixin_43011522/article/details/82495556</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%9B%BE/">图</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86/">深度遍历</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" data-tooltip="拓扑排序">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/" data-tooltip="图的宽度优先遍历">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" data-tooltip="拓扑排序">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/" data-tooltip="图的宽度优先遍历">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/09\/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86\/';
+          
+            this.page.identifier = '\/2019\/09\/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on Ferry</title>
+    <link>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Sep 2019 11:42:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>快速排序</title>
+      <link>https://togiv.github.io/2019/09/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Mon, 30 Sep 2019 11:42:40 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>最小生成树k算法</title>
+      <link>https://togiv.github.io/2019/09/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91k%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Mon, 30 Sep 2019 11:39:12 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91k%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>线段树</title>
+      <link>https://togiv.github.io/2019/09/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+      <pubDate>Mon, 30 Sep 2019 11:38:55 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树状数组</title>
+      <link>https://togiv.github.io/2019/09/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Mon, 30 Sep 2019 11:38:35 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树的链表表示</title>
+      <link>https://togiv.github.io/2019/09/%E6%A0%91%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A1%A8%E7%A4%BA/</link>
+      <pubDate>Mon, 30 Sep 2019 11:38:26 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%A0%91%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A1%A8%E7%A4%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>矩阵快速幂</title>
+      <link>https://togiv.github.io/2019/09/%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</link>
+      <pubDate>Mon, 30 Sep 2019 11:36:47 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>哈夫曼树</title>
+      <link>https://togiv.github.io/2019/09/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/</link>
+      <pubDate>Mon, 30 Sep 2019 11:36:38 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>二叉树神级遍历-Moris遍历</title>
+      <link>https://togiv.github.io/2019/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Mon, 30 Sep 2019 11:36:18 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KMP算法</title>
+      <link>https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Mon, 30 Sep 2019 11:36:04 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>拓扑排序</title>
+      <link>https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Mon, 30 Sep 2019 11:35:46 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图的深度优先遍历</title>
+      <link>https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Mon, 30 Sep 2019 11:35:34 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图的宽度优先遍历</title>
+      <link>https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Mon, 30 Sep 2019 11:35:26 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并查集</title>
+      <link>https://togiv.github.io/2019/09/%E5%B9%B6%E6%9F%A5%E9%9B%86/</link>
+      <pubDate>Mon, 30 Sep 2019 11:35:01 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%B9%B6%E6%9F%A5%E9%9B%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>快速幂取余</title>
+      <link>https://togiv.github.io/2019/09/%E5%BF%AB%E9%80%9F%E5%B9%82%E5%8F%96%E4%BD%99/</link>
+      <pubDate>Mon, 30 Sep 2019 11:33:14 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%BF%AB%E9%80%9F%E5%B9%82%E5%8F%96%E4%BD%99/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>前缀树</title>
+      <link>https://togiv.github.io/2019/09/%E5%89%8D%E7%BC%80%E6%A0%91/</link>
+      <pubDate>Mon, 30 Sep 2019 09:44:13 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E5%89%8D%E7%BC%80%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

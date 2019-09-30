@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>链表 on Ferry</title>
+    <link>https://togiv.github.io/categories/%E9%93%BE%E8%A1%A8/</link>
+    <description>Recent content in 链表 on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Sep 2019 11:38:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/categories/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>树的链表表示</title>
+      <link>https://togiv.github.io/2019/09/%E6%A0%91%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A1%A8%E7%A4%BA/</link>
+      <pubDate>Mon, 30 Sep 2019 11:38:26 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/09/%E6%A0%91%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A1%A8%E7%A4%BA/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

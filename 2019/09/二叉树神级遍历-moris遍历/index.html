@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="moris遍历">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树神级遍历-Moris遍历">
+<meta name="twitter:title" content="二叉树神级遍历-Moris遍历">
+<meta property="og:url" content="https://togiv.github.io/2019/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-30T11:36:18">
+  
+  
+    <meta property="article:modified_time" content="2019-09-30T11:36:18">
+  
+  
+  
+    
+      <meta property="article:section" content="算法">
+    
+      <meta property="article:section" content="树">
+    
+  
+  
+    
+      <meta property="article:tag" content="树">
+    
+      <meta property="article:tag" content="moris遍历">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>二叉树神级遍历-Moris遍历</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      二叉树神级遍历-Moris遍历
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-30T11:36:18&#43;08:00">
+        
+  
+  
+  
+  
+    30 九月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e6%a0%91">树</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>二叉树的前序，中序，后序遍历，要求时间复杂度为O(n),空间复杂度为0(1)，空间复杂度要求很苛刻，常规递归遍历的控盒件复杂度为树的深度0(h)，
+对于常规的栈结构递归来说，遍历某个节点之后不能回到上一层的节点，因为没有指向父节点的指针，Morris遍历避免了使用栈结构，让下层有指向上层的指针，但并不是所有的下层结点都有指向上层的指针
+具体的过程如下：
++ 当前节点current无左子树，current向<code>右</code>移动
++ 当前节点current有右子树，找到左子树<code>最右节点</code>Mostright
+    + mostright的右孩子为<code>空</code>，则mostright的右孩子指向<code>当前节点</code>mostright-&gt;right=current,当前节点current向<code>左</code>移动
+    + mostright的右孩子为<code>当前节点current</code>，则mostright的右孩子指向<code>空</code>mostright-&gt;right=null,current向<code>右</code>移动
+完整代码：</p>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std; 
+typedef int dataType;
+struct Node  //树的节点
+{
+	dataType val;
+	struct Node *left;
+	struct Node *right;
+ 
+	Node(dataType _val):
+		val(_val), left(NULL), right(NULL){}
+};
+ //单纯的moris遍历,不打印任何东西
+void Morris(Node *head)
+{
+	if (head == NULL)
+	{
+		return;
+	}
+ 
+	Node *p1 = head;
+	Node *p2 = NULL;
+ 
+	while (p1 != NULL)  
+	{
+		p2 = p1-&gt;left;
+		if (p2 != NULL)  //有左子树
+		{
+			while(p2-&gt;right != NULL &amp;&amp; p2-&gt;right != p1) //有右子树则一直找到右子树的最右孩子
+			{
+				p2 = p2-&gt;right;
+			}
+			if (p2-&gt;right == NULL)  //mostright的右孩子为空
+			{
+				p2-&gt;right = p1;		// 空闲指针
+				p1 = p1-&gt;left;   //当其节点向左移动
+				continue;
+			}
+			else //mostright的右孩子为为`当前节点current
+			{
+				p2-&gt;right = NULL;  //mostright的右孩子指向空
+			}
+		}
+		cout&lt;&lt;p1-&gt;val&lt;&lt;&quot; &quot;;
+		p1 = p1-&gt;right; //向右移动
+	}
+}
+// Morris中序遍历 (左 -&gt; 根 -&gt; 右)
+void MorrisInOrderTraverse(Node *head)
+{
+	if (head == NULL)
+	{
+		return;
+	}
+ 
+	Node *p1 = head;
+	Node *p2 = NULL;
+ 
+	while (p1 != NULL)
+	{
+		p2 = p1-&gt;left;
+		if (p2 != NULL)
+		{
+			while(p2-&gt;right != NULL &amp;&amp; p2-&gt;right != p1)
+			{
+				p2 = p2-&gt;right;
+			}
+			if (p2-&gt;right == NULL)
+			{
+				p2-&gt;right = p1;		// 空闲指针
+				p1 = p1-&gt;left;
+				continue;
+			}
+			else
+			{
+				p2-&gt;right = NULL;
+			}
+		}
+		cout&lt;&lt;p1-&gt;val&lt;&lt;&quot; &quot;; //第二次到达根节点时打印
+		p1 = p1-&gt;right;
+	}
+}
+ 
+// Morris前序遍历 (根 -&gt; 左 -&gt; 右)
+void MorrisPreOrderTraverse(Node *head)
+{
+	if (head == NULL)
+	{
+		return;
+	}
+ 
+	Node *p1 = head;
+	Node *p2 = NULL;
+ 
+	while (p1 != NULL)
+	{
+		p2 = p1-&gt;left;
+		if (p2 != NULL)
+		{
+			while(p2-&gt;right != NULL &amp;&amp; p2-&gt;right != p1)
+			{
+				p2 = p2-&gt;right;
+			}
+			if (p2-&gt;right == NULL)
+			{
+				p2-&gt;right = p1;		// 空闲指针
+				cout&lt;&lt;p1-&gt;val&lt;&lt;&quot; &quot;;	// 第一次到达根节点时打印
+				p1 = p1-&gt;left;
+				continue;
+			}
+			else
+			{
+				p2-&gt;right = NULL;
+			}
+		}
+		else
+		{
+			cout&lt;&lt;p1-&gt;val&lt;&lt;&quot; &quot;;
+		}
+		p1 = p1-&gt;right;
+	}
+}
+ 
+// 逆序右边界
+Node* reverseEdge(Node *head) //将所有右孩子的指向反过来
+{
+	Node *pre = NULL;
+	Node *next = NULL;
+ 
+	while(head != NULL)
+	{
+		next = head-&gt;right;
+		head-&gt;right = pre;
+		pre = head;
+		head = next;
+	}
+ 
+	return pre;
+}
+ 
+// 逆序打印左子树右边界
+void printEdge(Node *head)
+{
+	Node *lastNode = reverseEdge(head); // 先将顺序反过来，再打印
+	Node *cur = lastNode;
+ 
+	while (cur != NULL)
+	{
+		cout&lt;&lt;cur-&gt;val&lt;&lt;&quot; &quot;;
+		cur = cur-&gt;right;
+	}
+	reverseEdge(lastNode); //再反过来回复原来的样子
+}
+ 
+// Morris后序遍历 (左 -&gt; 右 -&gt; 根)
+void MorrisPostOrderTraverse(Node *head)
+{
+	if (head == NULL)
+	{
+		return;
+	}
+ 
+	Node *p1 = head;
+	Node *p2 = NULL;
+ 
+	while (p1 != NULL)
+	{
+		p2 = p1-&gt;left;
+		if (p2 != NULL)
+		{
+			while(p2-&gt;right != NULL &amp;&amp; p2-&gt;right != p1)
+			{
+				p2 = p2-&gt;right;
+			}
+			if (p2-&gt;right == NULL)
+			{
+				p2-&gt;right = p1;		// 空闲指针
+				p1 = p1-&gt;left;
+				continue;
+			}
+			else
+			{
+				p2-&gt;right = NULL;
+				printEdge(p1-&gt;left);
+			}
+		}
+		p1 = p1-&gt;right;
+	}
+	printEdge(head); //后续遍历逆序打印右子树(可证明)
+}
+ 
+void buildBinTree(Node **head) //先序建立二叉树
+{
+	dataType _val;
+	cin&gt;&gt;_val;
+ 
+	if (_val == -1)
+	{
+		*head = NULL;
+	}
+	else
+	{
+		*head = (Node*)malloc(sizeof(Node));
+		(*head)-&gt;val = _val;
+		buildBinTree(&amp;(*head)-&gt;left);
+		buildBinTree(&amp;(*head)-&gt;right);
+	}
+}
+ 
+int main(void)
+{
+	Node *head;
+	buildBinTree(&amp;head);
+	cout&lt;&lt;&quot;前序遍历序列为:&quot;;
+	MorrisPreOrderTraverse(head);
+	cout&lt;&lt;endl;
+ 
+	cout&lt;&lt;&quot;中序遍历序列为:&quot;;
+	MorrisInOrderTraverse(head);
+	cout&lt;&lt;endl;
+ 
+	cout&lt;&lt;&quot;后序遍历序列为:&quot;;
+	MorrisPostOrderTraverse(head);
+	cout&lt;&lt;endl;
+ 
+	return 0;
+}
+</code></pre>
+
+<p>代码参考地址：<a href="https://blog.csdn.net/u013575812/article/details/50069991">https://blog.csdn.net/u013575812/article/details/50069991</a></p>
+</blockquote>
+
+<p>感谢原作者分享</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%A0%91/">树</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/moris%E9%81%8D%E5%8E%86/">moris遍历</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/" data-tooltip="哈夫曼树">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/" data-tooltip="KMP算法">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/" data-tooltip="哈夫曼树">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/" data-tooltip="KMP算法">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/09\/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86\/';
+          
+            this.page.identifier = '\/2019\/09\/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%A5%9E%E7%BA%A7%E9%81%8D%E5%8E%86-moris%E9%81%8D%E5%8E%86\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

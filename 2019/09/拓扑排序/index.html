@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="拓扑排序">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拓扑排序">
+<meta name="twitter:title" content="拓扑排序">
+<meta property="og:url" content="https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-30T11:35:46">
+  
+  
+    <meta property="article:modified_time" content="2019-09-30T11:35:46">
+  
+  
+  
+    
+      <meta property="article:section" content="算法">
+    
+      <meta property="article:section" content="图">
+    
+  
+  
+    
+      <meta property="article:tag" content="图">
+    
+      <meta property="article:tag" content="排序">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>拓扑排序</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/09/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      拓扑排序
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-30T11:35:46&#43;08:00">
+        
+  
+  
+  
+  
+    30 九月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e5%9b%be">图</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="拓扑排序c">拓扑排序c++</h1>
+
+<p>对一个<code>有向无环图</code>(Directed Acyclic Graph简称DAG)进行拓扑排序，是将G中所有顶点排成一个线性序列，使得图中任意一对顶点u和v，若边(u,v)∈E(G)，则u在线性序列中出现在v之前。
+拓扑排序对应施工的流程图具有特别重要的作用，它可以决定哪些子工程必须要先执行，哪些子工程要在某些工程执行后才可以执行。为了形象地反映出整个工程中各个子工程(活动)之间的先后关系，可用一个有向图来表示，图中的顶点代表活动(子工程)，图中的有向边代表活动的先后关系，即有向边的起点的活动是终点活动的前序活动，只有当起点活动完成之后，其终点活动才能进行。通常，我们把这种顶点表示活动、边表示活动间先后关系的有向图称做顶点活动网(Activity On Vertex network)，简称<code>AOV网</code>。</p>
+
+<p>一个AOV网应该是一个有向无环图，即不应该带有回路，因为若带有回路，则回路上的所有活动都无法进行（对于数据流来说就是死循环）。在AOV网中，若不存在回路，则所有活动可排列成一个线性序列，使得每个活动的所有前驱活动都排在该活动的前面，我们把此序列叫做拓扑序列(Topological order)，由AOV网构造拓扑序列的过程叫做拓扑排序(Topological sort)。AOV网的拓扑序列不是唯一的，满足上述定义的任一线性序列都称作它的拓扑序列。</p>
+
+<hr />
+
+<p>拓扑排序的过程：
+&gt; + 先找到所有入度为0的节点，入<code>栈</code>，<code>入栈表示即将被输出</code>，弹出栈顶元素，并打印，这样就保证了，入度为0的节点先被打印
+&gt;+ 接着将与该节点直接后继所有节点的<code>入度都减1</code>，若减1之后入度为0，则入栈，接着重复该过程，直到栈为空</p>
+
+<blockquote>
+<p><em>从上述过程可以看出，若有分支，拓扑排序过程会将该分支打印完毕才会打印下一分支，若无入度为0的节点则不存在拓扑排序</em></p>
+</blockquote>
+
+<p>完整代码：</p>
+
+<hr />
+
+<pre><code class="language-c++">//topological_sort.h代码
+#pragma once
+//#pragma once是一个比较常用的C/C++杂注，
+//只要在头文件的最开始加入这条杂注，
+//就能够保证头文件只被编译一次。
+
+/*
+拓扑排序必须是对有向图的操作
+算法实现：
+（1）Kahn算法
+（2）DFS算法
+采用邻接表存储图
+*/
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;stack&gt;
+using namespace std;
+//表结点
+struct ArcNode {
+    ArcNode * next; //下一个关联的边
+    int adjvex;   //保存弧尾顶点在顶点表中的下标
+};
+struct Vnode {
+    string data; //顶点名称
+    ArcNode * firstarc; //第一个依附在该顶点边
+};
+
+class Graph_DG {
+private:
+    int vexnum; //图的顶点数
+    int edge;   //图的边数
+    int * indegree; //每条边的入度情况
+    Vnode * arc; //邻接表
+public:
+    Graph_DG(int, int);
+    ~Graph_DG();
+    //检查输入边的顶点是否合法
+    bool check_edge_value(int,int);
+    //创建一个图
+    void createGraph();
+    //打印邻接表
+    void print();
+    //进行拓扑排序,Kahn算法
+    bool topological_sort();
+    //进行拓扑排序，DFS算法
+    bool topological_sort_by_dfs();
+    void dfs(int n,bool * &amp; visit, stack&lt;string&gt; &amp; result);
+};
+//topological_sort.cpp代码
+#include&quot;topological_sort.h&quot;
+#define max 100  
+  
+string to_String(int n)  //重写to_string方法，以免旧的编译器不支持
+{  
+    int m=n;  
+    int i=0,j=0;  
+    char s[max];  
+    char ss[max];  
+    while(m&gt;0)  
+    {  
+        s[i++]= m%10 + '0';  
+        m/=10;  
+    }  
+    s[i]='\0';  
+  
+    i=i-1;  
+    while(i&gt;=0)  
+    {  
+        ss[j++]=s[i--];  
+    }  
+    ss[j]='\0';  
+  
+    return ss;  
+} 
+
+Graph_DG::Graph_DG(int vexnum, int edge) {// 初始化图
+    this-&gt;vexnum = vexnum; //顶点数
+    this-&gt;edge = edge;  //边数
+    this-&gt;arc = new Vnode[this-&gt;vexnum];//邻接表
+    this-&gt;indegree = new int[this-&gt;vexnum];//入度
+    for (int i = 0; i &lt; this-&gt;vexnum; i++) {
+        this-&gt;indegree[i] = 0; //所有入度都初始化为0
+        this-&gt;arc[i].firstarc = NULL;//第一个邻接边初始化为空
+        this-&gt;arc[i].data = &quot;v&quot; + to_String(i + 1);//节点命名
+    }
+}
+//释放内存空间
+Graph_DG::~Graph_DG() { // 析构函数
+    ArcNode * p, *q;
+    for (int i = 0; i &lt; this-&gt;vexnum; i++) {
+        if (this-&gt;arc[i].firstarc) {
+            p = this-&gt;arc[i].firstarc;
+            while (p) {
+                q = p-&gt;next;
+                delete p;
+                p = q;
+            }
+        }
+    }
+    delete [] this-&gt;arc;
+    delete [] this-&gt;indegree;
+}
+//判断我们每次输入的的边的信息是否合法
+//顶点从1开始编号
+bool Graph_DG::check_edge_value(int start, int end) {
+    if (start&lt;1 || end&lt;1 || start&gt;vexnum || end&gt;vexnum) {
+        return false;
+    }
+    return true;
+}
+void Graph_DG::createGraph() { //创建图，邻接表
+    int count = 0;   //count用来计数
+    int start, end;
+    cout &lt;&lt; &quot;输入每条起点和终点的顶点编号（从1开始编号）&quot; &lt;&lt; endl;
+    while (count != this-&gt;edge) {
+        cin &gt;&gt; start;
+        cin &gt;&gt; end;
+        //检查边是否合法
+        while (!this-&gt;check_edge_value(start, end)) {
+            cout &lt;&lt; &quot;输入的顶点不合法，请重新输入&quot; &lt;&lt; endl;
+            cin &gt;&gt; start;
+            cin &gt;&gt; end;
+        }
+        //声明一个新的表结点
+        ArcNode * temp = new ArcNode;
+        temp-&gt;adjvex = end - 1; //弧尾顶点下标
+        temp-&gt;next = NULL;  // 下一关联的边为空
+        //如果当前顶点的还没有边依附时，
+        if (this-&gt;arc[start - 1].firstarc == NULL) {
+            this-&gt;arc[start - 1].firstarc = temp;
+        } //挂上第一条依附的边
+        //如果当前顶点有边依附，
+        else {
+            ArcNode * now = this-&gt;arc[start - 1].firstarc;
+            while(now-&gt;next) {
+                now = now-&gt;next;
+            }//找到该链表的最后一个结点
+            now-&gt;next = temp; //挂到邻接表的最后
+
+        }
+        ++count;
+    }
+}
+void Graph_DG::print() {
+    int count = 0;
+    cout &lt;&lt; &quot;图的邻接矩阵为：&quot; &lt;&lt; endl;
+    //遍历链表，输出链表的内容
+    while (count != this-&gt;vexnum) {
+        //输出链表的结点
+        cout &lt;&lt; this-&gt;arc[count].data&lt;&lt;&quot; &quot;;
+        ArcNode * temp = this-&gt;arc[count].firstarc;
+        while (temp) {
+            cout&lt;&lt;&quot;&lt;&quot;&lt;&lt; this-&gt;arc[count].data&lt;&lt;&quot;,&quot;&lt;&lt; this-&gt;arc[temp-&gt;adjvex].data&lt;&lt;&quot;&gt; &quot;;
+            temp = temp-&gt;next;
+        }
+        cout &lt;&lt; &quot;^&quot; &lt;&lt; endl;
+        ++count;
+    }
+}
+
+bool Graph_DG::topological_sort() {
+    cout &lt;&lt; &quot;图的拓扑序列为：&quot; &lt;&lt; endl;
+    //栈s用于保存栈为空的顶点下标
+    stack&lt;int&gt; s;
+    int i;
+    ArcNode * temp;
+    //计算每个顶点的入度，保存在indgree数组中
+    for (i = 0; i != this-&gt;vexnum; i++) {
+        temp = this-&gt;arc[i].firstarc;
+        while (temp) {
+            ++this-&gt;indegree[temp-&gt;adjvex]; //该节点的所有直接后继节点的入度都加1，用邻接表来实现方便快捷
+            temp = temp-&gt;next;
+        }
+
+    }
+
+    //把所有入度为0的顶点入栈
+    for (i = 0; i != this-&gt;vexnum; i++) {
+        if (!indegree[i]) {
+            s.push(i); 
+        }
+    }
+    //count用于计算输出的顶点个数
+    int count=0;
+    while (!s.empty()) {//如果栈为空，则结束循环
+        i = s.top();
+        s.pop();//保存栈顶元素，并且栈顶元素出栈
+        cout &lt;&lt; this-&gt;arc[i].data&lt;&lt;&quot; &quot;;//输出拓扑序列
+        temp = this-&gt;arc[i].firstarc;
+        while (temp) {
+            if (!(--this-&gt;indegree[temp-&gt;adjvex])) {//  该节点的所有直接后继的入度都减一 如果入度减少到为0，则入栈，同样是用邻接表来实现
+                s.push(temp-&gt;adjvex);
+            }
+            temp = temp-&gt;next;
+        }
+        ++count;
+    }
+    if (count == this-&gt;vexnum) {
+        cout &lt;&lt; endl;
+        return true;
+    } 
+    cout &lt;&lt; &quot;此图有环，无拓扑序列&quot; &lt;&lt; endl;
+    return false;//说明这个图有环
+}
+//基于DFS的拓扑排序，仅供参考
+//bool Graph_DG::topological_sort_by_dfs() {
+//    stack&lt;string&gt; result;
+//    int i;
+//    bool * visit = new bool[this-&gt;vexnum];
+//    //初始化我们的visit数组
+//    memset(visit, 0, this-&gt;vexnum);
+//    cout &lt;&lt; &quot;基于DFS的拓扑排序为：&quot; &lt;&lt; endl;
+//    //开始执行DFS算法
+//    for (i = 0; i &lt; this-&gt;vexnum; i++) {
+//        if (!visit[i]) {
+//            dfs(i, visit, result);
+//        }
+//    }
+//    //输出拓扑序列，因为我们每次都是找到了出度为0的顶点加入栈中，
+//    //所以输出时其实就要逆序输出，这样就是每次都是输出入度为0的顶点
+//    for (i = 0; i &lt; this-&gt;vexnum; i++) {
+//        cout &lt;&lt; result.top() &lt;&lt; &quot; &quot;;
+//        result.pop();
+//    }
+//    cout &lt;&lt; endl;
+//    return true;
+//}
+//void Graph_DG::dfs(int n, bool * &amp; visit, stack&lt;string&gt; &amp; result) {
+//
+//        visit[n] = true;
+//        ArcNode * temp = this-&gt;arc[n].firstarc;
+//        while (temp) {
+//            if (!visit[temp-&gt;adjvex]) {
+//                dfs(temp-&gt;adjvex, visit,result);
+//            }
+//            temp = temp-&gt;next;
+//        }
+//        //由于加入顶点到集合中的时机是在dfs方法即将退出之时，
+//        //而dfs方法本身是个递归方法，
+//        //仅仅要当前顶点还存在边指向其他不论什么顶点，
+//        //它就会递归调用dfs方法，而不会退出。
+//        //因此，退出dfs方法，意味着当前顶点没有指向其他顶点的边了
+//        //，即当前顶点是一条路径上的最后一个顶点。
+//        //换句话说其实就是此时该顶点出度为0了
+//        result.push(this-&gt;arc[n].data);
+//
+//}
+//main.cpp文件
+#include &lt;iostream&gt;
+
+/* run this program using the console pauser or add your own getch, system(&quot;pause&quot;) or input loop */
+
+#include&quot;topological_sort.h&quot;
+bool check(int Vexnum, int edge) {
+    if (Vexnum &lt;= 0 || edge &lt;= 0 || ((Vexnum*(Vexnum - 1)) / 2) &lt; edge)
+        return false;
+    return true;
+}//检查输入的图是否合法，数学结论
+int main() {
+    int vexnum; int edge;
+
+
+    cout &lt;&lt; &quot;输入图的顶点个数和边的条数：&quot; &lt;&lt; endl;
+    cin &gt;&gt; vexnum &gt;&gt; edge;
+    while (!check(vexnum, edge)) {
+        cout &lt;&lt; &quot;输入的数值不合法，请重新输入&quot; &lt;&lt; endl;
+        cin &gt;&gt; vexnum &gt;&gt; edge;
+    }
+    Graph_DG graph(vexnum, edge);
+    graph.createGraph();
+    graph.print();
+    graph.topological_sort();
+
+    system(&quot;pause&quot;);
+    return 0;
+
+}
+</code></pre>
+
+<p>原文链接：<a href="https://blog.csdn.net/qq_35644234/article/details/60578189">https://blog.csdn.net/qq_35644234/article/details/60578189</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%9B%BE/">图</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/" data-tooltip="KMP算法">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/" data-tooltip="图的深度优先遍历">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/kmp%E7%AE%97%E6%B3%95/" data-tooltip="KMP算法">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/" data-tooltip="图的深度优先遍历">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/09\/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F\/';
+          
+            this.page.identifier = '\/2019\/09\/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
