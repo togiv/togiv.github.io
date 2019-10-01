@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>抢票 on Ferry</title>
+    <link>https://togiv.github.io/categories/%E6%8A%A2%E7%A5%A8/</link>
+    <description>Recent content in 抢票 on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Oct 2019 08:59:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/categories/%E6%8A%A2%E7%A5%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>12306抢票</title>
+      <link>https://togiv.github.io/2019/10/12306%E6%8A%A2%E7%A5%A8/</link>
+      <pubDate>Tue, 01 Oct 2019 08:59:15 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/12306%E6%8A%A2%E7%A5%A8/</guid>
+      <description>&lt;p&gt;&lt;em&gt;因12306验证码破解过程太过复杂，而且破解需要第三方打码平台，故这里采用selenium方法自动化抢票&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

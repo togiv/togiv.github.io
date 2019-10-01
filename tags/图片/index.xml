@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图片 on Ferry</title>
+    <link>https://togiv.github.io/tags/%E5%9B%BE%E7%89%87/</link>
+    <description>Recent content in 图片 on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Oct 2019 08:59:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/tags/%E5%9B%BE%E7%89%87/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>宝马汽车图片爬取</title>
+      <link>https://togiv.github.io/2019/10/%E5%AE%9D%E9%A9%AC%E6%B1%BD%E8%BD%A6%E5%9B%BE%E7%89%87%E7%88%AC%E5%8F%96/</link>
+      <pubDate>Tue, 01 Oct 2019 08:59:42 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/%E5%AE%9D%E9%A9%AC%E6%B1%BD%E8%BD%A6%E5%9B%BE%E7%89%87%E7%88%AC%E5%8F%96/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

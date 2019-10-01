@@ -6,26 +6,53 @@
     <description>Recent content in Categories on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 01 Oct 2019 08:54:12 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 09:19:10 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>category</title>
-      <link>https://togiv.github.io/categories/category/</link>
-      <pubDate>Tue, 01 Oct 2019 08:54:12 +0800</pubDate>
+      <title>hugo</title>
+      <link>https://togiv.github.io/categories/hugo/</link>
+      <pubDate>Tue, 01 Oct 2019 09:19:10 +0800</pubDate>
       
-      <guid>https://togiv.github.io/categories/category/</guid>
+      <guid>https://togiv.github.io/categories/hugo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>subcategory</title>
-      <link>https://togiv.github.io/categories/subcategory/</link>
-      <pubDate>Tue, 01 Oct 2019 08:54:12 +0800</pubDate>
+      <title>scrapy</title>
+      <link>https://togiv.github.io/categories/scrapy/</link>
+      <pubDate>Tue, 01 Oct 2019 09:01:19 +0800</pubDate>
       
-      <guid>https://togiv.github.io/categories/subcategory/</guid>
+      <guid>https://togiv.github.io/categories/scrapy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>爬虫</title>
+      <link>https://togiv.github.io/categories/%E7%88%AC%E8%99%AB/</link>
+      <pubDate>Tue, 01 Oct 2019 09:01:19 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E7%88%AC%E8%99%AB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>代理</title>
+      <link>https://togiv.github.io/categories/%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Tue, 01 Oct 2019 08:59:28 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E4%BB%A3%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>抢票</title>
+      <link>https://togiv.github.io/categories/%E6%8A%A2%E7%A5%A8/</link>
+      <pubDate>Tue, 01 Oct 2019 08:59:15 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E6%8A%A2%E7%A5%A8/</guid>
       <description></description>
     </item>
     
@@ -179,15 +206,6 @@
       <pubDate>Mon, 30 Sep 2019 11:35:46 +0800</pubDate>
       
       <guid>https://togiv.github.io/categories/%E5%9B%BE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>scrapy</title>
-      <link>https://togiv.github.io/categories/scrapy/</link>
-      <pubDate>Mon, 30 Sep 2019 11:33:57 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/categories/scrapy/</guid>
       <description></description>
     </item>
     

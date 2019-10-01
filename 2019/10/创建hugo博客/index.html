@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="tech">
+<meta name="keywords" content="hugo创建博客">
 <meta name="description" content="">
 
 
@@ -23,24 +23,22 @@
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-01T08:54:12">
+    <meta property="article:published_time" content="2019-10-01T09:19:10">
   
   
-    <meta property="article:modified_time" content="2019-10-01T08:54:12">
+    <meta property="article:modified_time" content="2019-10-01T09:19:10">
   
   
   
     
-      <meta property="article:section" content="category">
-    
-      <meta property="article:section" content="subcategory">
+      <meta property="article:section" content="hugo">
     
   
   
     
-      <meta property="article:tag" content="tag1">
+      <meta property="article:tag" content="hugo">
     
-      <meta property="article:tag" content="tag2">
+      <meta property="article:tag" content="创建博客">
     
   
 
@@ -224,7 +222,7 @@
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-01T08:54:12&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-01T09:19:10&#43;08:00">
         
   
   
@@ -240,9 +238,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://togiv.github.io/categories/category">category</a>, 
-    
-      <a class="category-link" href="https://togiv.github.io/categories/subcategory">subcategory</a>
+      <a class="category-link" href="https://togiv.github.io/categories/hugo">hugo</a>
     
   
 
@@ -252,7 +248,85 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <h1 id="使用hugo创建并更新博客">使用hugo创建并更新博客</h1>
+
+<p>首先下载完成<a href="https://github.com/gohugoio/hugo/releases">hugo</a>，widows下切换目录可能会出现hugo运行失败，只需要将下载的hugo可执行文件复制一份到相应的目录下即可</p>
+
+<h2 id="本地搭建">本地搭建</h2>
+
+<p><font color="red">创建博客，申请站点</font>
++ Hugo new site myblog(自己起名)</p>
+
+<p><font color="red">切换目录</font></p>
+
+<ul>
+<li>Cd myblog(目录名)
+#下载主题，根据自己需要而定 <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></li>
+</ul>
+
+<p><font color="red">下载主题</font></p>
+
+<ul>
+<li>Git clone 网址 themes/主题名<br /></li>
+</ul>
+
+<p><font color="blue">配置主题请见<a href="https://togiv.github.io/2019/09/hugo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">这里</a></font></p>
+
+<p><font color="red">启动服务，可在localhost:1313查看</font></p>
+
+<ul>
+<li>Hugo server -t 主题名 &ndash;buildDrafts<br /></li>
+</ul>
+
+<p><font color="red">新建文章，配置不改一般都会生成到public文件下</font>
++  hugo new post/名字</p>
+
+<p><font color="red">Github上建好仓库</font></p>
+
+<ul>
+<li>仓库名:  your_name.github.io</li>
+</ul>
+
+<p><font color="red">为文章配置主题</font></p>
+
+<ul>
+<li>Hugo &ndash;theme=主题名 &ndash;baseUrl=<a href="https://you_name.github.io(仓库地址（也是远程博客地址）)--buildDrafts">https://you_name.github.io(仓库地址（也是远程博客地址）)--buildDrafts</a><br />
+
+<br /></li>
+</ul>
+
+<h2 id="接下来推到远端">接下来推到远端</h2>
+
+<p><font color="red">切换目录</font></p>
+
+<p><em>此时已生成public文件</em></p>
+
+<ul>
+<li><p>Cd public/</p></li>
+
+<li><p>Git init</p></li>
+
+<li><p>Git add *</p></li>
+
+<li><p>Git commit -m “提交信息”</p></li>
+</ul>
+
+<p><font color="red">连接到远程仓库</font></p>
+
+<ul>
+<li>Git remote add origin 仓库地址.git &#8195; 完整的github仓库地址</li>
+</ul>
+
+<p><font color="red">推到github</font>
++ Git push -u origin master</p>
+
+<p>若出现 remote origin already exists</p>
+
+<p>先运行 <code>git remote rm origin</code> 清除远程连接</p>
+
+<p>配置完成后即可在 <a href="https://your_name.github.io查看博客">https://your_name.github.io查看博客</a></p>
+
+<p>最终效果请看<a href="https://togiv.github.io/">这里</a></p>
               
             </div>
           </div>
@@ -264,9 +338,9 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/tag1/">tag1</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/hugo/">hugo</a>
 
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/tag2/">tag2</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/">创建博客</a>
 
                   </div>
                 
@@ -287,7 +361,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/" data-tooltip="字母连续">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%AD%E5%9B%BD%E8%AE%B0%E5%BF%86%E5%8A%9B%E8%AE%AD%E7%BB%83%E7%BD%91%E4%B9%A6%E7%B1%8D%E7%88%AC%E5%8F%96/" data-tooltip="中国记忆力训练网书籍爬取">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -355,7 +429,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/" data-tooltip="字母连续">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%AD%E5%9B%BD%E8%AE%B0%E5%BF%86%E5%8A%9B%E8%AE%AD%E7%BB%83%E7%BD%91%E4%B9%A6%E7%B1%8D%E7%88%AC%E5%8F%96/" data-tooltip="中国记忆力训练网书籍爬取">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="搜房网爬取">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜房网数据爬取">
+<meta name="twitter:title" content="搜房网数据爬取">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E6%90%9C%E6%88%BF%E7%BD%91%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E6%90%9C%E6%88%BF%E7%BD%91%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-01T09:00:30">
+  
+  
+    <meta property="article:modified_time" content="2019-10-01T09:00:30">
+  
+  
+  
+    
+      <meta property="article:section" content="爬虫">
+    
+      <meta property="article:section" content="scrapy">
+    
+  
+  
+    
+      <meta property="article:tag" content="爬虫">
+    
+      <meta property="article:tag" content="scrapy">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>搜房网数据爬取</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E6%90%9C%E6%88%BF%E7%BD%91%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      搜房网数据爬取
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-01T09:00:30&#43;08:00">
+        
+  
+  
+  
+  
+    1 十月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%88%ac%e8%99%ab">爬虫</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/scrapy">scrapy</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h2 id="搜房网信息爬取">搜房网信息爬取</h2>
+
+<ol>
+<li><code>scrapy startproject fang</code>建立项目</li>
+<li><code>cd fang</code></li>
+
+<li><p><code>scrapy genspider sfw &quot;https://www1.fang.com/&quot;</code>
+项目创建完成，接下写启动文件<code>start.py</code></p>
+
+<pre><code class="language-python">from scrapy import cmdline
+cmdline.execute(&quot;scrapy crawl sfw&quot;.split( ))
+</code></pre>
+
+<p>爬虫文件如下所示：</p>
+
+<h2 id="swf-py">swf.py</h2>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+import scrapy
+from fang.items import newFangItem,esFangItem
+import re
+class SfwSpider(scrapy.Spider):
+name = 'sfw'
+allowed_domains = ['fang.com']
+start_urls = ['https://www.fang.com/SoufunFamily.htm']
+
+def parse(self, response):
+    trs = response.xpath(r'//table[@class=&quot;table01&quot;]//tr')
+    for tr in trs:
+        province_ready = tr.xpath(r'./td[not(@class)][1]//text()').get()
+        province_ready = re.sub('\s','',province_ready)
+        if province_ready:
+            province = province_ready
+        if province_ready == '其它':
+            continue
+        cities =  tr.xpath(r'./td[not(@class)][2]/a/text()').getall()
+        cities_url = tr.xpath(r'./td[not(@class)][2]/a/@href').getall()
+
+        for city, city_url in zip(cities,cities_url):
+            if 'bj.' in city_url:
+                new_url = 'https://newhouse.fang.com/house/s/'
+                esf_url = 'https://esf.fang.com/'
+            else:
+                new_url = &quot;.newhouse.&quot;.join(city_url.split('.',1))+'house/s/'
+                esf_url = &quot;.esf.&quot;.join(city_url.split('.',1))
+            # yield scrapy.Request(url=new_url,callback=self.parse_newhouse,meta={&quot;info&quot;:(province,city)})
+            yield  scrapy.Request(url=esf_url,callback=self.parse_esf,meta={&quot;info&quot;:(province,city)})
+
+        #  meta传递省份和城市信息
+def parse_newhouse(self,response):
+    province, city = response.meta.get('info')    #接收信息
+    ls = response.xpath(r'//div[@id=&quot;newhouse_loupai_list&quot;]/ul//li')
+    for l in ls:
+        name = l.xpath(r'.//div[@class=&quot;nlcd_name&quot;]/a/text()').get()
+        if name:
+            name = name.strip()
+
+            house_type = l.xpath(r'.//div[@class=&quot;house_type clearfix&quot;]/a/text()').getall()
+            rooms_ready = list(map(lambda x:re.sub(&quot; &quot;,&quot;&quot;,x),house_type))
+            rooms = &quot;&quot;.join(rooms_ready)
+
+            # if not rooms.startswith(&quot;'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'&quot;):
+            #     rooms = None
+            area = l.xpath(r'.//div[@class=&quot;house_type clearfix&quot;]/text()').getall()
+            area = list(map(lambda x:re.sub('\s|\/|－','',x),area))
+            area = &quot;&quot;.join(area)
+            # print(area)
+            sale = l.xpath(r'//span[@class=&quot;inSale&quot;]//text()').get()
+            addresses = l.xpath(r'//div[@class=&quot;address&quot;]/a/@title').get()
+            addressss = &quot;&quot;.join(addresses)
+            district_ready = re.match(r'\[(.+?)\](.+)',addresses)
+            if district_ready:
+                district = district_ready.group(1)
+                address = district_ready.group(2)
+            price = l.xpath(r'//div[@class=&quot;nhouse_price&quot;]/span/text()').get()
+            d = l.xpath(r'//div[@class=&quot;nhouse_price&quot;]/em/text()').get()
+            price = price + d
+            price.replace('广告','')
+            origin_url = l.xpath('//div[@class=&quot;nlcd_name&quot;]/a/@href').get()
+        try:
+            item = newFangItem(province=province,city=city,name=name,price=price,rooms=rooms,area=area,address=address,
+                        district=district,sale=sale,origin_url=origin_url)
+        except:
+            pass
+        try:
+            yield item
+        except:
+            pass
+    next = response.xpath(r'//div[@class=&quot;page&quot;]//a[@class=&quot;next&quot;]').get()
+    if next:
+        yield scrapy.Request(url=response.urljoin(next),callback=self.parse_newhouse,meta={'info':{province,city}})
+
+
+def parse_esf(self,response):
+    province, city = response.meta.get('info')    #接收信息
+    ls = response.xpath(r'//div[@class=&quot;shop_list shop_list_4&quot;]/dl')
+    for l in ls:
+        name = l.xpath(r'.//dd[not(@class)]/p[@class=&quot;add_shop&quot;]/a/@title').get()
+        address = l.xpath(r'.//dd[not(@class)]/p[@class=&quot;add_shop&quot;]/span/text()').get()
+        style = l.xpath(r'.//dd[not(@class)]/p[@class=&quot;tel_shop&quot;]/text()').getall()
+        style = list(map(lambda x:re.sub(' |\r\n','',x),style))
+        if style:
+            rooms = style[0]
+            area = style[1]
+            height = None
+            try:
+                height = style[2]
+            except:
+                pass
+            direction = None
+            try:
+                direction = style[3]
+            except:
+                pass
+            year = None
+            try:
+                year = style[4]
+            except:
+                pass
+        price = &quot;&quot;.join(l.xpath(r'.//dd[@class=&quot;price_right&quot;]/span[@class=&quot;red&quot;]//text()').getall())
+        unit_price = l.xpath(r'.//dd[@class=&quot;price_right&quot;]/span[not(@class)]/text()').get()
+        origin_url = response.urljoin(l.xpath(r'./dt/a/@href').get())
+        item2 = esFangItem(province=province,city=city,name=name,address=address,rooms=rooms,area=area,height=height,
+                          direction=direction,year=year,price=price,unit_price=unit_price,origin_url=origin_url)
+        yield item2
+#下一页的链接
+    next = response.xpath(r'.//div[@class=&quot;page_al&quot;]/p[1]/a/@href').get()
+    next_url = response.urljoin(next)
+    if next_url:
+        yield scrapy.Request(url=next_url,callback=self.parse_esf,meta={'info':{province,city}})
+</code></pre></li>
+</ol>
+
+<h2 id="items-py">items.py</h2>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+# Define here the models for your scraped items
+#
+# See documentation in:
+# https://docs.scrapy.org/en/latest/topics/items.html
+
+import scrapy
+class newFangItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    #省份
+    province = scrapy.Field()
+    #城市
+    city = scrapy.Field()
+    #小区名字
+    name = scrapy.Field()
+    #价格
+    price = scrapy.Field()
+    #几居室，这是个列表
+    rooms = scrapy.Field()
+    #面积
+    area = scrapy.Field()
+    #地址
+    address = scrapy.Field()
+    #行政区
+    district = scrapy.Field()
+    #是否在售
+    sale = scrapy.Field()
+    #房天下详情页面的url
+    origin_url = scrapy.Field()
+class esFangItem(scrapy.Item):
+    #省份
+    province = scrapy.Field()
+    #城市
+    city = scrapy.Field()
+    #小区名
+    name = scrapy.Field()
+    #小区地址
+    address = scrapy.Field()
+    #几室几厅
+    rooms = scrapy.Field()
+    #面积
+    area= scrapy.Field()
+    #多少层
+    height= scrapy.Field()
+    #朝向
+    direction= scrapy.Field()
+    #哪年建
+    year= scrapy.Field()
+    #价格
+    price= scrapy.Field()
+    #单价
+    unit_price= scrapy.Field()
+    #链接
+    origin_url= scrapy.Field()
+
+</code></pre>
+
+<h2 id="middlewares-py">middlewares.py</h2>
+
+<pre><code class="language-python">
+# -*- coding: utf-8 -*-
+
+# Define here the models for your spider middleware
+#
+# See documentation in:
+# https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+
+import random
+class UserAgentDownLoadMiddleware(object):
+    USER_AGENTS = [
+        &quot;Mozilla/5.0 (compatible; U; ABrowse 0.6; Syllable) AppleWebKit/420+ (KHTML, like Gecko)&quot;,
+        &quot;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; Browzar)&quot;,
+        &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931&quot;,
+        &quot;Mozilla/5.0 (Windows NT 6.2; WOW64; rv:63.0) Gecko/20100101 Firefox/63.0&quot;,
+        &quot;Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.13; ko; rv:1.9.1b2) Gecko/20081201 Firefox/60.0&quot;,
+        &quot;Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25&quot;,
+        &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36&quot;,
+    ]
+    def process_request(self, request, spider):
+        user_agent = random.choice(self.USER_AGENTS)
+        request.headers['User-Agent'] = user_agent
+</code></pre>
+
+<h2 id="pipelines-py">pipelines.py</h2>
+
+<p><strong>其中pipelines包括三个类：
+FangPipeline类直接将文件存储到json文件中
+而newfangSqlPipeline是将新房信息存储到数据库中
+esfangSqlPipeline是将二手房信息存储到数据库中</strong></p>
+
+<pre><code class="language-python">
+# -*- coding: utf-8 -*-
+
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+from scrapy.exporters import JsonLinesItemExporter
+import pymysql
+import os
+os.chdir('G:/爬取内容')
+class FangPipeline(object):
+    def __init__(self):
+        self.newhouse_fp = open('newhouse.json','wb')
+        self.eshouse_fp = open('eshouse.json','wb')
+        self.newhouse_exporter = JsonLinesItemExporter(self.newhouse_fp,ensure_ascii=False)
+        self.eshouse_exporter = JsonLinesItemExporter(self.eshouse_fp,ensure_ascii=False)
+
+    def process_item(self, item, spider):
+        self.newhouse_exporter.export_item(item)
+        self.eshouse_exporter.export_item(item)
+        return item
+
+    def close_spider(self,spider):
+        self.newhouse_fp.close()
+        self.eshouse_fp.close()
+
+
+class newfangSqlPipeline(object):
+    def __init__(self):
+        data = {
+            'host':'localhost',
+            'port':3306,
+            'user':'root',
+            'password':'124780',
+            'database':'jianshu',
+            'charset':'utf8mb4'
+        }
+        self.conn = pymysql.connect(**data)
+        self.cursor = self.conn.cursor()
+        if self.conn:
+            print('='*30)
+            print('连接成功')
+            print('='*30)
+        self._sql = None
+    def process_item(self, item, spider):
+        self.cursor.execute(self.sql, (item['province'], item['city'], item['name'], item['price'], item['rooms'], item['area'], item['address'], item[
+        'district'], item['sale'], item['origin_url']))
+        self.conn.commit()
+        return item
+
+    @property
+    def sql(self):
+        if not self._sql:
+            self._sql = '''
+                    insert into newfang(province,city,name,price,rooms,area,address,district,sale,origin_url) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                    '''
+            return self._sql
+        return self._sql
+
+class esfangSqlPipeline(object):
+    def __init__(self):
+        data = {
+            'host': 'localhost',
+            'port': 3306,
+            'user': 'root',
+            'password': '124780',
+            'database': 'jianshu',
+            'charset': 'utf8mb4'
+        }
+        self.conn = pymysql.connect(**data)
+        self.cursor = self.conn.cursor()
+        if self.conn:
+            print('=' * 30)
+            print('连接成功')
+            print('=' * 30)
+        self._sql = None
+    def process_item(self, item2, spider):
+        self.cursor.execute(self.sql, (item2['province'], item2['city'], item2['name'], item2['address'], item2['rooms'], item2['area'], item2['height'],
+                                       item2['direction'], item2['year'], item2['price'], item2['unit_price'], item2['origin_url']))
+        self.conn.commit()
+        return item2
+
+    @property
+    def sql(self):
+        if not self._sql:
+            self._sql = '''
+            insert into esfang(province,city,name,address,rooms,area,height,direction,year,price,unit_price,origin_url) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            '''
+            return self._sql
+        return self._sql
+</code></pre>
+
+<h2 id="settings-py">settings.py</h2>
+
+<p>只需要打开以下几个注释即可</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+ROBOTSTXT_OBEY = False
+
+DOWNLOAD_DELAY = 2 #根据自己需要设置延时
+
+DEFAULT_REQUEST_HEADERS = {
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en',
+
+}
+
+
+DOWNLOADER_MIDDLEWARES = {
+   'fang.middlewares.UserAgentDownLoadMiddleware': 300,
+}
+
+#根据自己需要打开下载
+ITEM_PIPELINES = {
+   # 'fang.pipelines.FangPipeline': 543,
+   #  'fang.pipelines.newfangSqlPipeline': 543,
+    'fang.pipelines.esfangSqlPipeline': 543,
+}
+
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/scrapy/">scrapy</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A4%BE%E5%8C%BA%E6%96%87%E7%AB%A0%E7%88%AC%E5%8F%96/" data-tooltip="微信小程序社区文章爬取">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%E7%88%AC%E5%8F%96/" data-tooltip="糗事百科爬取">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A4%BE%E5%8C%BA%E6%96%87%E7%AB%A0%E7%88%AC%E5%8F%96/" data-tooltip="微信小程序社区文章爬取">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%E7%88%AC%E5%8F%96/" data-tooltip="糗事百科爬取">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E6%90%9C%E6%88%BF%E7%BD%91%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96\/';
+          
+            this.page.identifier = '\/2019\/10\/%E6%90%9C%E6%88%BF%E7%BD%91%E6%95%B0%E6%8D%AE%E7%88%AC%E5%8F%96\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
