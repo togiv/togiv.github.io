@@ -6,10 +6,91 @@
     <description>Recent content in Categories on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Sep 2019 22:20:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 08:39:28 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hugo</title>
+      <link>https://togiv.github.io/categories/hugo/</link>
+      <pubDate>Tue, 01 Oct 2019 08:39:28 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>博客</title>
+      <link>https://togiv.github.io/categories/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 01 Oct 2019 08:39:28 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>字符串</title>
+      <link>https://togiv.github.io/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <pubDate>Tue, 01 Oct 2019 08:05:14 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 01 Oct 2019 08:05:14 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>coding</title>
+      <link>https://togiv.github.io/categories/coding/</link>
+      <pubDate>Tue, 01 Oct 2019 08:05:00 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数列</title>
+      <link>https://togiv.github.io/categories/%E6%95%B0%E5%88%97/</link>
+      <pubDate>Tue, 01 Oct 2019 08:04:43 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E6%95%B0%E5%88%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数字</title>
+      <link>https://togiv.github.io/categories/%E6%95%B0%E5%AD%97/</link>
+      <pubDate>Tue, 01 Oct 2019 08:04:33 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E6%95%B0%E5%AD%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>哈希</title>
+      <link>https://togiv.github.io/categories/%E5%93%88%E5%B8%8C/</link>
+      <pubDate>Tue, 01 Oct 2019 08:03:19 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E5%93%88%E5%B8%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树</title>
+      <link>https://togiv.github.io/categories/%E6%A0%91/</link>
+      <pubDate>Tue, 01 Oct 2019 07:58:31 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/categories/%E6%A0%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>栈</title>
@@ -17,15 +98,6 @@
       <pubDate>Mon, 30 Sep 2019 22:20:38 +0800</pubDate>
       
       <guid>https://togiv.github.io/categories/%E6%A0%88/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>算法</title>
-      <link>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Mon, 30 Sep 2019 22:20:38 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     
@@ -57,38 +129,11 @@
     </item>
     
     <item>
-      <title>字符串</title>
-      <link>https://togiv.github.io/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
-      <pubDate>Mon, 30 Sep 2019 22:17:47 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>树</title>
-      <link>https://togiv.github.io/categories/%E6%A0%91/</link>
-      <pubDate>Mon, 30 Sep 2019 22:16:49 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/categories/%E6%A0%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>并查集</title>
       <link>https://togiv.github.io/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/</link>
       <pubDate>Mon, 30 Sep 2019 22:13:52 +0800</pubDate>
       
       <guid>https://togiv.github.io/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>coding</title>
-      <link>https://togiv.github.io/categories/coding/</link>
-      <pubDate>Mon, 30 Sep 2019 22:03:39 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/categories/coding/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="搜索二叉树">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索二叉树">
+<meta name="twitter:title" content="搜索二叉树">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-01T07:58:31">
+  
+  
+    <meta property="article:modified_time" content="2019-10-01T07:58:31">
+  
+  
+  
+    
+      <meta property="article:section" content="算法">
+    
+      <meta property="article:section" content="树">
+    
+  
+  
+    
+      <meta property="article:tag" content="树">
+    
+      <meta property="article:tag" content="搜索二叉树">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>搜索二叉树</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      搜索二叉树
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-01T07:58:31&#43;08:00">
+        
+  
+  
+  
+  
+    1 十月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e6%a0%91">树</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h2 id="搜索二叉树">搜索二叉树</h2>
+
+<blockquote>
+<p>搜索二叉树：节点的左子树比自己小，右子树比自己大</p>
+
+<p>搜索一个值：如果比自己小就去左子树上找，如果比自己大就去右子树上找</p>
+
+<p>如何建立搜索二叉树：先询问，比根节点小就往左子树上找，比根节点大就往右子树上找，找到不能再找就说明找到正确位置，找到正确位置之后往上挂</p>
+
+<p>最复杂的是删除操作，
+(替换函数)：以下替代节点就用newnode代替,被替代的节点就用node代替
+一个节点（newnode）彻底代替另一个节点(node)，若要替的节点没有父节点说明该节点为根节点，直接让要替代的节点为根节点就行,如果node不为根节点，node为node父节点的左孩子，则让node的父节点的左孩子指向newnode，node为node父节点的右孩子，则让node的父节点的右孩子指向newnode，再将newnode的父指针指向node的父指针，返回newnode.</p>
+</blockquote>
+
+<ul>
+<li>若删除的节点没有左孩子，删除节点后让右孩子占据我原本的位置即可，即用替换函数让我的右孩子替换我，如果没有右孩子，删除节点后让左孩子占据我的位置即可，用替换函数让我的左孩子要替换我</li>
+<li>若删除的节点即有左孩子又有右孩子，找到我的后继节点（即我的右子树上最左的节点同时也是我的右子树上最小的节点也就是最接近我的节点）来替我，而且我右子树上最左的节点一定是没有左子树，可能有右子树的，newnode原本没有左子树，替代我之后，直接把我的左子树挂到newnode的左子树上，如果newnode有右子树则将newnode的右子树挂到newnode的父节点的左子树（即原本newnode的位置），替代我之后的newnode的右子树就挂上我的右子树
+具体过程:让我的后继节点newnode出来，让newnode的右孩子占据newnod的位置，newnode出来</li>
+<li>若我的后继节点就是我的右孩子，为了不错乱，直接让右孩子代替我的位置
+具体过程：让我的右孩子的右孩子替换我的右孩子，右孩子出来在接替我</li>
+</ul>
+
+<p>两个具体过程的最后：彻底接管我的环境，将原本我的左右孩子的父节点指向newnode</p>
+
+<p><em>有一种简单的替换的操作是找到我的后继节点之后直接将我的值和我后继节点的值互换，这样一来我的环境没有动，只需要将我的后继节点的环境改一下，省了一步改变删除我后转移我的环境的操作，如果newnode有右孩子，只需将newnode的右孩子挂到Newnode的父节点的左孩子上即可。下面的演示代码采用这种形式</em></p>
+
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stdlib.h&gt;
+#include&quot;assert.h&quot;
+using namespace std;
+typedef int DataType; 
+typedef struct BSTreeNode 
+{
+    struct BSTreeNode *_left;
+    struct BSTreeNode *_right;
+    DataType _data;
+}BSTreeNode;
+
+//树节点的创建
+BSTreeNode *BuyTreeNode(DataType x) //创建节点
+{
+    BSTreeNode *node = (BSTreeNode*)malloc(sizeof(BSTreeNode));
+    assert(node);  // 申请内存失败则退出
+    node-&gt;_data = x;   //初始化节点
+    node-&gt;_left = NULL;
+    node-&gt;_right = NULL;
+
+    return node;
+}
+//二叉树的插入操作，非递归代码，插入成功返回0，失败返回-1
+int BSTreeNodeInsert(BSTreeNode *pptree,DataType x) //搜索树的插入
+{
+    BSTreeNode *parent = NULL;
+    BSTreeNode *cur = pptree;
+    if (pptree == NULL)
+    {
+        pptree = BuyTreeNode(x); //为空则创建为根节点
+        return 0;
+    }
+    while (cur)  //寻找该插入的位置
+    {
+      parent = cur;
+      if (cur-&gt;_data &gt; x)
+          cur = cur-&gt;_left;  //要插入的小往左找
+      else if (cur-&gt;_data &lt; x) //要插入的大往右找
+          cur = cur-&gt;_right;
+      else    //已存在,插入失败
+          return -1;
+    }
+    //已找到要插入的位置
+    if (parent-&gt;_data &gt; x)
+        parent-&gt;_left = BuyTreeNode(x); //创建节点并插入
+    else 
+        parent-&gt;_right = BuyTreeNode(x);
+
+    return 0;
+}
+//二叉树的插入递归代码
+/*int BSTreeNodeInsertR(BSTreeNode **tree,DataType x) //搜索树的插入
+{
+    if(*tree == NULL)
+    {
+        *tree = BuyTreeNode(x);
+        return 0;
+    }
+
+    if ((*tree)-&gt;_data &gt; x)
+        return BSTreeNodeInsertR(&amp;(*tree)-&gt;_left,x);
+    else if ((*tree)-&gt;_data &lt; x)
+        return BSTreeNodeInsertR(&amp;(*tree)-&gt;_right,x);
+    else
+        return -1;
+}*/
+//二叉树的查找操作非递归 找到返回地址，找不到返回0
+BSTreeNode *BSTreeNodeFind(BSTreeNode *tree,DataType x) //查找
+{
+    while (tree)
+    {
+        if (tree-&gt;_data == x)   //返回地址
+            return tree;
+        else if (tree-&gt;_data &lt; x) //大了往右找
+            tree = tree-&gt;_right;
+        else 
+            tree = tree-&gt;_left;  //小了往左找
+    }
+
+    return NULL;
+}
+//二叉树的查找递归
+/*BSTreeNode *BSTreeNodeFindR(BSTreeNode *tree,DataType x) //查找
+{
+    if (!tree)
+        return NULL;
+
+    if (tree-&gt;_data &gt; x)
+        BSTreeNodeFindR(tree-&gt;_left,x);
+    else if (tree-&gt;_data &lt; x)
+        BSTreeNodeFindR(tree-&gt;_right,x);
+    else
+        return tree;
+}*/
+//二叉树的删除操作
+int BSTreeNodeDel(BSTreeNode *tree,DataType x) //删除
+{
+
+    BSTreeNode *cur = tree;
+    BSTreeNode *parent = tree;
+    BSTreeNode *del = NULL;
+
+    while (cur)  //此循环寻找要删除值所在的节点，cur代表要删除的节点，parent代表cur的父节点
+    {
+        if (cur-&gt;_data &gt; x)
+        {
+            parent = cur;
+            cur = cur-&gt;_left;
+        }
+        else if (cur-&gt;_data &lt; x)
+        {
+            parent = cur;
+            cur = cur-&gt;_right;
+        }
+        else //此时代表已找到要删除的节点
+        {
+            del = cur;
+
+            if (cur-&gt;_left == NULL) //1、左孩子为空
+            {
+                if (parent-&gt;_left == cur)  //cur为父节点的左孩子
+                    parent-&gt;_left = cur-&gt;_right; //cur的父节点的左孩子直接指向cur的右孩子
+                else if (parent-&gt;_right == cur)//cur为父节点的右孩子
+                    parent-&gt;_right = cur-&gt;_right;//cur的父节点的右孩子直接指向cur的右孩子
+                else if (parent == cur) //没有父亲节点时，即cur为根节点
+                   tree = parent-&gt;_right;//cur的右节点根节点指向cur的右孩子
+            }
+            else if (cur-&gt;_right == NULL) //2、右孩子为空
+            {
+                if (parent-&gt;_left == cur)//cur为父节点的左孩子
+                    parent-&gt;_left = cur-&gt;_left;//cur的父节点的左孩子直接指向cur的左孩子
+                else if (parent-&gt;_right == cur)//cur为父节点的右孩子
+                    parent-&gt;_right = cur-&gt;_left;//cur的父节点的右孩子直接指向cur的左孩子
+                else if (parent == cur) ////没有父亲节点时，即cur为根节点
+                    tree = parent-&gt;_left;//cur的右节点根节点指向cur的左孩子
+            }
+            else//3、左右孩子都不为空
+            {
+                BSTreeNode *sub = cur-&gt;_right;
+                while (sub-&gt;_left) //此循环找cur的后继节点
+                {
+                    parent = sub;//parent表示newnode 的父节点
+                    sub = sub-&gt;_left;  sub表示newnode
+                }
+
+                del = sub;
+                cur-&gt;_data = sub-&gt;_data; //直接互换值
+
+                if (parent-&gt;_left == sub)  //sub为parent的左孩子
+                    parent-&gt;_left = sub-&gt;_right;//sub的右孩子连到parent的左孩子上
+                else //sub为parent的右孩子
+                    parent-&gt;_right = sub-&gt;_right;//sub的右孩子连到parent的右孩子上
+            }
+
+            free(del); //释放del指针
+            del = NULL;
+            return 0;
+
+        }
+    }
+
+    return -1;
+}
+//中序打印二叉树
+void print(BSTreeNode *root){
+	if (root == NULL){
+		return;
+	}
+	if(root){
+		 
+		print(root-&gt;_left);
+		cout&lt;&lt;root-&gt;_data&lt;&lt;endl;
+		print(root-&gt;_right);
+	}
+}
+int main(){
+	BSTreeNode *root = BuyTreeNode(10);
+	BSTreeNodeInsert(root,5);
+	BSTreeNodeInsert(root,6);
+	BSTreeNodeInsert(root,3);
+	BSTreeNodeInsert(root,15);
+	BSTreeNodeInsert(root,17);
+	BSTreeNodeInsert(root,8);
+	BSTreeNodeInsert(root,12);
+	BSTreeNodeInsert(root,30);
+	BSTreeNodeFind(root,17);
+	print(root);
+	cout&lt;&lt;BSTreeNodeDel(root,17)&lt;&lt;endl;
+	BSTreeNodeFind(root,17);
+	cout&lt;&lt;&quot;==============&quot;&lt;&lt;endl;
+	print(root);	
+}
+</code></pre>
+
+<p>原文地址:<a href="https://blog.51cto.com/13449864/2073270">https://blog.51cto.com/13449864/2073270</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%A0%91/">树</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">搜索二叉树</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/a-b/" data-tooltip="A&#43;b">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E6%A0%88%E7%BB%93%E6%9E%84%E5%8D%95%E9%93%BE%E8%A1%A8/" data-tooltip="栈结构单链表">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/a-b/" data-tooltip="A&#43;b">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/09/%E6%A0%88%E7%BB%93%E6%9E%84%E5%8D%95%E9%93%BE%E8%A1%A8/" data-tooltip="栈结构单链表">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91\/';
+          
+            this.page.identifier = '\/2019\/10\/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,10 +6,19 @@
     <description>Recent content in 字符串 on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Sep 2019 22:17:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 08:05:14 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>字母连续</title>
+      <link>https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/</link>
+      <pubDate>Tue, 01 Oct 2019 08:05:14 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>子串查询</title>

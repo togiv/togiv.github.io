@@ -6,10 +6,37 @@
     <description>Recent content in 算法 on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Sep 2019 22:20:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2019 08:05:14 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>字母连续</title>
+      <link>https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/</link>
+      <pubDate>Tue, 01 Oct 2019 08:05:14 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/%E5%AD%97%E6%AF%8D%E8%BF%9E%E7%BB%AD/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hash插入</title>
+      <link>https://togiv.github.io/2019/10/hash%E6%8F%92%E5%85%A5/</link>
+      <pubDate>Tue, 01 Oct 2019 08:03:19 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/hash%E6%8F%92%E5%85%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>搜索二叉树</title>
+      <link>https://togiv.github.io/2019/10/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
+      <pubDate>Tue, 01 Oct 2019 07:58:31 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>栈结构单链表</title>
