@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Ferry">
+<meta name="keywords" content="BFPRT算法">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFPRT算法">
+<meta name="twitter:title" content="BFPRT算法">
+<meta property="og:url" content="https://togiv.github.io/2019/10/bfprt%E7%AE%97%E6%B3%95/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/bfprt%E7%AE%97%E6%B3%95/">
+<meta property="og:site_name" content="Ferry">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-10-02T11:52:35">
+  
+  
+    <meta property="article:modified_time" content="2019-10-02T11:52:35">
+  
+  
+  
+    
+      <meta property="article:section" content="算法学习">
+    
+      <meta property="article:section" content="算法讲解">
+    
+  
+  
+    
+      <meta property="article:tag" content="BFPRT算法">
+    
+      <meta property="article:tag" content="top-k">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
+
+
+    <title>BFPRT算法</title>
+
+    <link rel="icon" href="https://togiv.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://togiv.github.io/2019/10/bfprt%E7%AE%97%E6%B3%95/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://togiv.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://togiv.github.io/">Ferry</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://togiv.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://togiv.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Ferry</h4>
+        
+          <h5 class="sidebar-profile-bio">在读学生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://togiv.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://me.csdn.net/qq_43699661" target="_blank" rel="noopener">
+    
+      
+      
+      <span class="sidebar-button-desc">CSDN</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/togiv" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      BFPRT算法
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-02T11:52:35&#43;08:00">
+        
+  
+  
+  
+  
+    2 十月 2019
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e5%ad%a6%e4%b9%a0">算法学习</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e8%ae%b2%e8%a7%a3">算法讲解</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h2 id="一-背景介绍">一：背景介绍</h2>
+
+<p>&#8195;在一堆数中求其前 k 大或前 k 小的问题，简称 TOP-K 问题。
+而目前解决 TOP-K 问题最有效的算法即是 BFPRT 算法，又称为<code>中位数的中位数算法</code>，最坏时间复杂度为O(n) 。</p>
+
+<p>在首次接触 TOP-K 问题时，我们的第一反应就是可以先对所有数据进行一次排序，然后取其前 k 即可，但是这么做有两个问题：</p>
+
+<ol>
+<li><p>快速排序的平均复杂度为 O(nlogn)，但最坏时间复杂度为 O(n)，不能始终保证较好的复杂度；</p></li>
+
+<li><p>我们只需要前 k 大的，而对其余不需要的数也进行了排序，浪费了大量排序时间。</p></li>
+</ol>
+
+<p>&#8195;除这种方法之外，堆排序也是一个比较好的选择，可以维护一个大小为 k 的堆，时间复杂度为 O(nlogk)。</p>
+
+<p>&#8195;先来看一下常规解法：采用<a href="https://togiv.github.io/2019/09/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a></p>
+
+<p>&#8195;随机在数组中选择一个数作为划分值（number），然后进行快排的partation过程（将小于number的数放到数组左边，等于number的数放到数组中间，大于number的数放到数组右边），然后判断k与等于number区域的相对关系，如果k正好在等于number区域，那么数组第k小的数就是number，如果k在等于number区域的左边，那么我们递归对左边再进行上述过程，如果k在等于number区域的右边，那我们递归对右边再进行上述过程。</p>
+
+<p>对于常规解法，我们分析一下它的时间复杂度：</p>
+
+<p>递归函数复杂度计算：</p>
+
+<p>T(N)=a*T(N/b)+o(N^d);</p>
+
+<p>当log(b,a) &gt; d时   复杂度为O（N^log(b,a）);</p>
+
+<p>当log(b,a) = d时   复杂度为O（N^d*log(2,N));</p>
+
+<p>当log(b,a) &lt; d时   复杂度为O（N^d);</p>
+
+<p>N为样本数据个数  即数组中元素的个数。</p>
+
+<p>N/b为将这N个数划分为更小的部分，每个部分的样本数据个数，一般为均分，那么b等于2。
+a为划分为多个部分后，小部分执行的次数。
+d为递归函数调用完成后剩下的操作的时间复杂度。</p>
+
+<p>&#8195;对于最好的情况：每次所选的number正好在数组的正中间，那么上式中a等于1，b等于2，对于partation过程，时间复杂度是O（n），所以d等于1。所以T（N）= T（N/2）+ O（N），此时 log( 2 , 1 ) &lt; 1，故时间复杂度为O（N）。</p>
+
+<p>&#8195;对于最坏情况：每次所选的number正好在数组最边上，那么时间复杂度为O（N ^ 2）.</p>
+
+<h2 id="bfprt算法的优化">BFPRT算法的优化</h2>
+
+<p>&#8195;bfprt算法就是在这个number上做文章，bfprt算法能够保证每次所选的number在数组的中间位置，那么时间复杂度就是O（N）。</p>
+
+<p><code>第一步</code>：我们将数组每5个相邻的数分成一组，后面的数如果不够5个数也分成一组。</p>
+
+<p><code>第二步</code>：对于每组数，我们找出这5个数的中位数，将所有组的中位数构成一个median数组（中位数数组）。</p>
+
+<p><code>第三步</code>：我们再求这个中位数数组中的中位数，此时所求出的中位数就是那个number。</p>
+
+<p><code>第四步</code>：通过这个number进行partation过程，下面和常规解法就一样了。</p>
+
+<p>&#8195;接下来我们分析一下为什么bfprt算法每次选number的时候都能够在数组的中间位置。</p>
+
+<p><img src="https://togiv.github.io/images/bfprt1.png" alt="" /></p>
+
+<p>&#8195;我们假设这就是分出来的每5个数的小组，每一列代表一个小组。</p>
+
+<p><img src="https://togiv.github.io/images/bfprt2.png" alt="" /></p>
+
+<p>&#8195;图中红框内的数我们假设就是每一组的中位数。我们假设总数组的数字个数是N，那么中位数数组中数字的个数就是 N / 5 。</p>
+
+<p><img src="https://togiv.github.io/images/bfprt3.png" alt="" /></p>
+
+<p>&#8195;我们假设用蓝框框起来的数是中位数数组的中位数（divide），那么由中位数的性质可知，中位数数组中有一半的数比这个divide大，所以总共有 N / 10个数比这个divide大。</p>
+
+<p><img src="https://togiv.github.io/images/bfprt4.png" alt="" /></p>
+
+<p>&#8195;用紫色框框出的数肯定也是比divide大，所以至少有N / 10 + ( 2*N ) / 10 = ( 3*N ) / 10 个数比divide大，那么以divide为划分的partation过程能够使得divide在数组的靠近中间的位置，最坏情况也能够在数组的 ( 3*N ) / 10 或者 ( 7*N ) / 10 的位置。</p>
+
+<h2 id="bfprt算法的复杂度">BFPRT算法的复杂度</h2>
+
+<p>number找出来以后分析一下时间复杂度：</p>
+
+<ol>
+<li><p>分组  O(1)</p></li>
+
+<li><p>组内排序  O(n)</p></li>
+
+<li><p>重新组合成大小为n的数组 O(n)</p></li>
+
+<li><p>BFPRT调用自己 O(n/5)</p></li>
+
+<li><p>作为划分值，找中位数 O(n)</p></li>
+
+<li><p>若没命中，最坏O(7*n/10)</p></li>
+</ol>
+
+<p>&#8195;最坏时间复杂度为：</p>
+
+<p>&#8195;T(N) = O(1)+O(n)+O(n)+O(n/5)+O(n)+O(7*n/10)=O(N)+O(N/5)+O(7*N/10) 数学上已经证明T(n)=O(n)</p>
+
+<p>&#8195;到此我们已经将复杂度降到了O(n)</p>
+
+<h2 id="代码实现">代码实现</h2>
+
+<p>完整代码:</p>
+
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int a[2];
+int bfprt(int root[],int begin,int end,int k);//这是核心函数，表示在root数组的begin位置到end位置上找出第k小的元素
+int getmedian(int root[],int beginI,int endI)//这个函数求的是在root数组中beginI位置到endI位置上的中位数（其实就是求由每5个数所分成的小组的小组内的中位数）
+{
+    sort(root+beginI,root+endI+1);  //sort函数左闭右开 
+    int sum=beginI+endI;
+    int mid=(sum/2)+(sum%2);//这个地方加上sum%2是为了确保偶数个数时我们求的是中间两个数的后一个,加不加无所谓，取哪个都一样 
+    return root[mid];
+}
+int medianOfMedians(int root[],int star,int finish)//这个函数是将root数组star位置到finish位置分成每5个数一个小组，并求出每个小组内的中位数
+{
+    int num=finish-star+1;//求出长度
+    int offset=num%5==0?0:1;//最后如果剩余的数不足5个，我们也将其分成一个小组，和前面同等对待
+    int range=num/5+offset;
+    int median[range];//这个数组存的是每个小组内的中位数
+    for(int i=0;i&lt;range;i++)//依次往median数组中填数
+    {
+        int beginI=star+i*5;//第i组数对应root数组上的位置
+        int endI=beginI+4;  //五个一组 
+        median[i]=getmedian(root,beginI,min(endI,finish));
+    }
+    return bfprt(median,0,range-1,range/2);//求出生成好的median中位数数组，利用Bfprt求出number值，作为partation函数的划分值
+}
+void swap(int root[],int a,int b)
+{
+    int temp=root[a];
+    root[a]=root[b];
+    root[b]=temp;
+}
+void partation(int root[],int beginJ,int endJ,int number)//partation函数求的是等于number的范围
+{
+    int less=beginJ-1;
+    int more=endJ+1;
+    int cur=beginJ;
+    while (cur&lt;more)
+    {
+        if(root[cur]&lt;number)
+        {
+            less++;
+            swap(root,cur,less);
+            cur++;
+        }
+        else if(root[cur]==number)
+            cur++;
+        else
+        {
+            more--;
+            swap(root,cur,more);
+        }
+    }
+    a[0]=less+1; //小于区域的右边界，加一是为了防止溢出 
+    a[1]=more-1; //大于区域的左边界，减一是为了防止溢出，
+				//而且下面判断范围时加了= ，可以保证不会溢出的同时可以判断大小 
+}
+int bfprt(int root[],int begin,int end,int k)
+{
+    if(begin==end)//数组中只有一个数时，直接返回
+        return root[begin];
+    int divide=medianOfMedians(root,begin,end);//求出以哪个数作为划分值
+    partation(root,begin,end,divide);//注意，进行完partation过程后，root数组已经呈现出小中大的顺序 
+    if(k&gt;=a[0]&amp;&amp;k&lt;=a[1])//如果需要求的数正好在等于区域，直接返回root[k]
+        return root[k];
+    else if(k&lt;a[0])//此时我们要找的数比divide小，递归求前半部分
+        return bfprt(root,begin,a[0]-1,k);   //刚才加上的要减去 
+    else if(k&gt;a[1])//此时我们要找的数比divide大，递归求后半部分
+        return bfprt(root,a[1]+1,end,k);   //刚才减去的要加上 
+}
+int main()
+{
+    int n,k;
+    int root[100000];
+	cin&gt;&gt;n; 
+	cin&gt;&gt;k;
+    for(int i=0;i&lt;n;i++)
+        cin&gt;&gt;root[i];
+    cout&lt;&lt;&quot;第&quot;&lt;&lt;k&lt;&lt;&quot;小的数是&quot;&lt;&lt;bfprt(root,0,n-1,k-1)&lt;&lt;endl;  //k-1是因为数组下标从0开始 
+	cout&lt;&lt;&quot;变换后的数组&quot;&lt;&lt;endl; 
+    for(int k=0;k&lt;n;k++)
+        cout&lt;&lt;root[k]&lt;&lt;&quot; &quot;;
+}
+</code></pre>
+
+<p>本文章在<a href="https://blog.csdn.net/qq_40938077/article/details/81213820">https://blog.csdn.net/qq_40938077/article/details/81213820</a>文章上稍加修改，感谢原作者分享</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/bfprt%E7%AE%97%E6%B3%95/">BFPRT算法</a>
+
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/top-k/">top-k</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/manacher%E7%AE%97%E6%B3%95/" data-tooltip="Manacher算法">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Ferry. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/manacher%E7%AE%97%E6%B3%95/" data-tooltip="Manacher算法">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+      <div class="post-comment">
+        
+        
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: '8CHO6pkfX855Sp8aYILi3P4l-gzGzoHsz',
+        appKey: 'FqIIksTrcwCU5n6NqJfdeiVL',
+        notify: 'false', 
+        verify: 'false', 
+        avatar:'mm', 
+        placeholder: '说点什么吧...',
+        visitor: 'true'
+    });
+  </script>
+    </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Ferry</h4>
+    
+      <div id="about-card-bio">在读学生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        长春
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://togiv.github.io/images/bg.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://togiv.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/bfprt%E7%AE%97%E6%B3%95\/';
+          
+            this.page.identifier = '\/2019\/10\/bfprt%E7%AE%97%E6%B3%95\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
