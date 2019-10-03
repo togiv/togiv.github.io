@@ -7,38 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="hugo创建博客">
+<meta name="keywords" content="单调栈">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建hugo博客">
-<meta name="twitter:title" content="创建hugo博客">
-<meta property="og:url" content="https://togiv.github.io/2019/10/%E5%88%9B%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2/">
-<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E5%88%9B%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2/">
+<meta property="og:title" content="单调栈">
+<meta name="twitter:title" content="单调栈">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
 <meta property="og:site_name" content="Ferry">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-01T09:19:10">
+    <meta property="article:published_time" content="2019-10-03T06:54:20">
   
   
-    <meta property="article:modified_time" content="2019-10-01T09:19:10">
+    <meta property="article:modified_time" content="2019-10-03T06:54:20">
   
-  
-  
-    
-      <meta property="article:section" content="hugo">
-    
   
   
     
-      <meta property="article:tag" content="hugo">
+      <meta property="article:section" content="算法学习">
     
-      <meta property="article:tag" content="创建博客">
+      <meta property="article:section" content="数据结构">
+    
+  
+  
+    
+      <meta property="article:tag" content="栈">
+    
+      <meta property="article:tag" content="单调栈">
     
   
 
@@ -59,14 +61,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
 
 
-    <title>创建hugo博客</title>
+    <title>单调栈</title>
 
     <link rel="icon" href="https://togiv.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://togiv.github.io/2019/10/%E5%88%9B%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2/">
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -216,19 +218,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      创建hugo博客
+      单调栈
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-01T09:19:10&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-03T06:54:20&#43;08:00">
         
   
   
   
   
-    1 十月 2019
+    3 十月 2019
   
 
       </time>
@@ -238,7 +240,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://togiv.github.io/categories/hugo">hugo</a>
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e5%ad%a6%e4%b9%a0">算法学习</a>, 
+    
+      <a class="category-link" href="https://togiv.github.io/categories/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">数据结构</a>
     
   
 
@@ -248,100 +252,163 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="使用hugo创建并更新博客">使用hugo创建并更新博客</h1>
+              <h2 id="一-定义">一. 定义</h2>
 
-<p>首先下载完成<a href="https://github.com/gohugoio/hugo/releases">hugo</a>，widows下切换目录可能会出现hugo运行失败，只需要将下载的hugo可执行文件复制一份到相应的目录下即可</p>
+<p>&#8195;下面引自百度百科
+&gt; 单调递增或单调减的栈，跟单调队列差不多，但是只用到它的一端，利用它可以用来解决一些ACM/ICPC和OI的题目，如RQNOJ 的诺诺的队列等。</p>
 
-<h2 id="本地搭建">本地搭建</h2>
+<h2 id="二-单调栈实现过程">二. 单调栈实现过程</h2>
 
-<p><font color="yellow">创建博客，申请站点</font></p>
+<p>&#8195;单调栈是一种特殊的栈，特殊之处在于栈内的元素都保持一个单调性。
+假设下图是一个栈内元素的排列情况(<code>单调递增的栈</code>)：从下到上依次递增</p>
 
-<ul>
-<li>Hugo new site myblog(自己起名)</li>
-</ul>
+<p><img src="https://togiv.github.io/images/单调栈1.png" alt="" /></p>
 
-<p><font color="yellow">切换目录</font></p>
+<p>&#8195;此时插入情况有两种：</p>
 
-<ul>
-<li>Cd myblog(目录名)</li>
-</ul>
+<ol>
+<li>插入元素大于栈顶元素</li>
+</ol>
 
-<p>#下载主题，根据自己需要而定 <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></p>
+<p>当插入7时，因7 &gt; 6，满足单调递增的条件，故可以直接加入栈
+此时：</p>
 
-<p><font color="yellow">下载主题</font></p>
+<p><img src="https://togiv.github.io/images/单调栈2.png" alt="" /></p>
 
-<ul>
-<li>Git clone 网址 themes/主题名<br /></li>
-</ul>
+<ol>
+<li>插入的元素小于栈顶元素</li>
+</ol>
 
-<p><font color="blue">配置主题请见<a href="https://togiv.github.io/2019/09/hugo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">这里</a></font></p>
+<p>当插入3时，为了满足单调递增栈的性质，需要先将栈顶的4，6弹出，再插入，此时：</p>
 
-<p><font color="yellow">启动服务，可在localhost:1313查看</font></p>
+<p><img src="https://togiv.github.io/images/单调栈3.png" alt="" /></p>
 
-<ul>
-<li>Hugo server -t 主题名 &ndash;buildDrafts<br /></li>
-</ul>
+<p>&#8195;以上的内容和图我相信是非常容易理解的，
+但单调栈的作用和功能并不能得到很好的体现，
+故下面将用文字 + 图示的形式来展示单调栈的作用</p>
 
-<p><font id="h",color="yellow">新建文章，配置不改一般都会生成到public文件下</font></p>
+<p>先上结论：</p>
 
-<ul>
-<li><a id="h">hugo new post/名字</a></li>
-</ul>
+<p>利用单调栈，可以找到从左/右遍历第一个比它小/大的元素的位置</p>
 
-<p><font color="yellow">Github上建好仓库</font></p>
+<h2 id="三-举例">三. 举例</h2>
 
-<ul>
-<li>仓库名:  your_name.github.io</li>
-</ul>
+<p>举个例子：</p>
 
-<p><font color="yellow">为文章配置主题</font></p>
+<p>假设有一个单调递增的栈 S和一组数列：</p>
 
-<ul>
-<li>Hugo &ndash;theme=主题名 &ndash;baseUrl = <a href="https://you_name.github.io">https://you_name.github.io</a> (仓库地址（也是远程博客地址）)&ndash;buildDrafts<br />
+<p>a : 5 3 7 4</p>
 
-<br /></li>
-</ul>
+<p>用数组<code>L[i]</code> 表示 第i个数向左遍历的第一个比它小的元素的位置</p>
 
-<h2 id="接下来推到远端">接下来推到远端</h2>
+<p>如何求L[i]？</p>
 
-<p><font color="yellow">切换目录</font></p>
+<p>首先我们考虑一个朴素的算法，可以按顺序枚举每一个数，然后再依此向左遍历。
+但是当数列单调递减时，复杂度是严格的O(n^2)。</p>
 
-<p><em>此时已生成public文件</em></p>
+<p>此时我们便可以利用单调栈在O(n)的复杂度下实现</p>
 
-<ul>
-<li><p>Cd public/</p></li>
+<p>我们按顺序遍历数组，然后构造一个单调递增栈</p>
 
-<li><p>Git init</p></li>
+<ol>
+<li>i = 1时，因栈为空，L[1] = 0，此时再将第一个元素的位置下标1存入栈中</li>
+</ol>
 
-<li><p>Git add *</p></li>
+<p>此时栈中情况：</p>
 
-<li><p>Git commit -m “提交信息”</p></li>
-</ul>
+<p><img src="https://togiv.github.io/images/单调栈4.png" alt="" /></p>
 
-<p><font color="yellow">连接到远程仓库</font></p>
+<ol>
+<li>i = 2时，因当前3小于栈顶元素对应的元素5，故将5弹出栈
+此时栈为空,故L[2] = 0然后将元素3对应的位置下标2存入栈中</li>
+</ol>
 
-<ul>
-<li>Git remote add origin 仓库地址.git &#8195; 完整的github仓库地址</li>
-</ul>
+<p>此时栈中情况：</p>
 
-<p><font color="yellow">推到github</font></p>
+<p><img src="https://togiv.github.io/images/单调栈5.png" alt="" /></p>
 
-<ul>
-<li>Git push -u origin master</li>
-</ul>
+<ol>
+<li>.i = 3时，因当前7大于栈顶元素对应的元素3，故
+L[3] = S.top() = 2 (栈顶元素的值)</li>
+</ol>
 
-<p>若出现 remote origin already exists，</p>
+<p>然后将元素7对应的下标3存入栈
+此时栈中情况：</p>
 
-<p>连接一次后就会出现这句提醒，这时就不需要再重新连接了，如果链接已存在但不是你需要的链接可以
-先运行 <code>git remote rm origin</code> 清除远程连接</p>
+<p><img src="https://togiv.github.io/images/单调栈6.png" alt="" /></p>
 
-<p>配置完成后即可在 <a href="https://your_name.github.io查看博客">https://your_name.github.io查看博客</a></p>
+<ol>
+<li>i = 4时，为保持单调递增的性质，应将栈顶元素3弹出
+此时 L[4] = S.top() = 2;</li>
+</ol>
 
-<p>最终效果请看<a href="https://togiv.github.io/">这里</a></p>
+<p>然后将元素4对应的下标3存入栈
+此时栈中情况：</p>
 
-<h2 id="更新博客">更新博客</h2>
+<p><img src="https://togiv.github.io/images/单调栈7.png" alt="" /></p>
 
-<p>&#8195;搭建好博客之后,目前没有找到好的更新办法，更新需要从<a href="#h">这里</a>即创建文章这一步开始走一遍流程。</p>
+<p>至此 算法结束</p>
+
+<p>对应的结果：</p>
+
+<p>a : 5 3 7 4</p>
+
+<p>L : 0 0 2 2</p>
+
+<p>&#8195;总结：一个元素向左遍历的第一个比它小的数的位置就是将它插入单调栈时
+栈顶元素的值，若栈为空，则说明不存在这么一个数。然后将此元素的下标存入栈，
+就能类似迭代般地求解后面的元素</p>
+
+<h2 id="四-延伸">四.延伸</h2>
+
+<p>&#8195;有让求每个元素<code>两边</code>的离的最近的比它小的数，这时元素弹出的时候，左边照常收集，不过多收集一组信息<code>R</code>,记录是哪个元素让它弹出的，下标记录到<code>R</code>中,这样<code>L</code>中记录了左边离它最近的比它小的数，<code>R</code>中记录了右边离它最近的比它小的数</p>
+
+<p>特殊情况就是，所有元素都进栈之后，栈中剩余的元素怎么算，只需要将栈中元素依次弹出，正常记录左边的比它小的值的下标，而<code>R</code>数组中，凡是不因元素的进入而弹出，而是因为清空栈自动弹出的元素，所对应的<code>R</code>数组中的值都为空，即不存在。</p>
+
+<h2 id="五-代码实现">五. 代码实现</h2>
+
+<p><em>代码实现中只在元素弹出的时候记录它左右两边的值。元素进栈的时候不做任何操作</em></p>
+
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+int main(){
+	int a[100];
+	int L[100];
+	int R[100];
+	stack&lt;int&gt; s;
+	int n;
+	int temp;
+	a[0] = 0;
+	cin&gt;&gt;n;
+	for(int i=1;i&lt;=n;i++){
+		cin&gt;&gt;a[i];
+		if(s.empty())
+			s.push(i);
+		else{
+			while(!s.empty() &amp;&amp; a[i]&lt;a[s.top()]){
+				temp = s.top();
+				s.pop();
+				L[temp] = s.top();
+				R[temp] = i;		
+			}
+			s.push(i);
+
+	}
+	}
+	while(!s.empty()){
+		int temp = s.top();
+		s.pop();
+		L[temp] = s.top();
+		R[temp] = 0;
+	}
+	for(int k=1;k&lt;=n;k++){
+		cout&lt;&lt;&quot;左边最近&quot;&lt;&lt;(L[k]==0 ? 0:a[L[k]])&lt;&lt;&quot; &quot;&lt;&lt;&quot;元素&quot;&lt;&lt;a[k]&lt;&lt;&quot; &quot;&lt;&lt;&quot;右边最近&quot;&lt;&lt;(R[k]==0?0:a[R[k]])&lt;&lt;endl;
+	}
+}
+</code></pre>
+
+<p>本文参考链接：<a href="https://blog.csdn.net/WuBaizhe/article/details/70136174">https://blog.csdn.net/WuBaizhe/article/details/70136174</a></p>
               
             </div>
           </div>
@@ -353,9 +420,9 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/hugo/">hugo</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%A0%88/">栈</a>
 
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/">创建博客</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
 
                   </div>
                 
@@ -368,7 +435,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/manacher%E7%AE%97%E6%B3%95/" data-tooltip="Manacher算法">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -376,7 +443,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%AD%E5%9B%BD%E8%AE%B0%E5%BF%86%E5%8A%9B%E8%AE%AD%E7%BB%83%E7%BD%91%E4%B9%A6%E7%B1%8D%E7%88%AC%E5%8F%96/" data-tooltip="中国记忆力训练网书籍爬取">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" data-tooltip="双端队列">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -436,7 +503,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/manacher%E7%AE%97%E6%B3%95/" data-tooltip="Manacher算法">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -444,7 +511,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%AD%E5%9B%BD%E8%AE%B0%E5%BF%86%E5%8A%9B%E8%AE%AD%E7%BB%83%E7%BD%91%E4%B9%A6%E7%B1%8D%E7%88%AC%E5%8F%96/" data-tooltip="中国记忆力训练网书籍爬取">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" data-tooltip="双端队列">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -593,9 +660,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E5%88%9B%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2\/';
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E5%8D%95%E8%B0%83%E6%A0%88\/';
           
-            this.page.identifier = '\/2019\/10\/%E5%88%9B%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2\/'
+            this.page.identifier = '\/2019\/10\/%E5%8D%95%E8%B0%83%E6%A0%88\/'
           
         };
         (function() {
