@@ -7,40 +7,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="单调栈">
+<meta name="keywords" content="之字形打印数组">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单调栈">
-<meta name="twitter:title" content="单调栈">
-<meta property="og:url" content="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
-<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
+<meta property="og:title" content="之字形打印数组">
+<meta name="twitter:title" content="之字形打印数组">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/">
 <meta property="og:site_name" content="Ferry">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-03T06:54:20">
+    <meta property="article:published_time" content="2019-10-03T17:06:31">
   
   
-    <meta property="article:modified_time" content="2019-10-03T06:54:20">
+    <meta property="article:modified_time" content="2019-10-03T17:06:31">
   
-  
-  
-    
-      <meta property="article:section" content="算法学习">
-    
-      <meta property="article:section" content="数据结构">
-    
   
   
     
-      <meta property="article:tag" content="栈">
+      <meta property="article:section" content="算法">
     
-      <meta property="article:tag" content="单调栈">
+      <meta property="article:section" content="coding">
+    
+  
+  
+    
+      <meta property="article:tag" content="数组">
     
   
 
@@ -61,14 +59,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
 
 
-    <title>单调栈</title>
+    <title>之字形打印数组</title>
 
     <link rel="icon" href="https://togiv.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,13 +216,13 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      单调栈
+      之字形打印数组
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-03T06:54:20&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-03T17:06:31&#43;08:00">
         
   
   
@@ -240,9 +238,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e5%ad%a6%e4%b9%a0">算法学习</a>, 
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">数据结构</a>
+      <a class="category-link" href="https://togiv.github.io/categories/coding">coding</a>
     
   
 
@@ -252,158 +250,64 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h2 id="一-定义">一. 定义</h2>
+              <h2 id="题目描述">题目描述：</h2>
 
-<p>&#8195;下面引自百度百科
-&gt; 单调递增或单调减的栈，跟单调队列差不多，但是只用到它的一端，利用它可以用来解决一些ACM/ICPC和OI的题目，如RQNOJ 的诺诺的队列等。</p>
+<blockquote>
+<p>给出一个二维数组，按照之字形的顺序打印出来</p>
+</blockquote>
 
-<h2 id="二-单调栈实现过程">二. 单调栈实现过程</h2>
+<h2 id="分析">分析：</h2>
 
-<p>&#8195;单调栈是一种特殊的栈，特殊之处在于栈内的元素都保持一个单调性。
-假设下图是一个栈内元素的排列情况(<code>单调递增的栈</code>)：从下到上依次递增</p>
+<p><img src="https://togiv.github.io/images//之字形打印数组.png" alt="" />
+ &#8195;如图 如果着眼于局部按区分数组边界的方法来做得到结果，过程需要处理边界，考察抠边界的能力，如果着眼于整体就会非常的简单。通过观察可以发现，按照题目要求，数组每次拐弯时，之字形的同一条直线的边界距离(0,0)的位置都是一样的，每次拐弯的不同之处就在于拐的方向不同，一次是向右上，一次是向左下，用一个标志位标志走的方向即可</p>
 
-<p><img src="https://togiv.github.io/images/单调栈1.png" alt="" /></p>
-
-<p>&#8195;此时插入情况有两种：</p>
-
-<ol>
-<li>插入元素大于栈顶元素</li>
-</ol>
-
-<p>当插入7时，因7 &gt; 6，满足单调递增的条件，故可以直接加入栈
-此时：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈2.png" alt="" /></p>
-
-<ol>
-<li>插入的元素小于栈顶元素</li>
-</ol>
-
-<p>当插入3时，为了满足单调递增栈的性质，需要先将栈顶的4，6弹出，再插入，此时：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈3.png" alt="" /></p>
-
-<p>&#8195;以上的内容和图我相信是非常容易理解的，
-但单调栈的作用和功能并不能得到很好的体现，
-故下面将用文字 + 图示的形式来展示单调栈的作用</p>
-
-<p>先上结论：</p>
-
-<p>利用单调栈，可以找到从左/右遍历第一个比它小/大的元素的位置</p>
-
-<h2 id="三-举例">三. 举例</h2>
-
-<p>举个例子：</p>
-
-<p>假设有一个单调递增的栈 S和一组数列：</p>
-
-<p>a : 5 3 7 4</p>
-
-<p>用数组<code>L[i]</code> 表示 第i个数向左遍历的第一个比它小的元素的位置</p>
-
-<p>如何求L[i]？</p>
-
-<p>首先我们考虑一个朴素的算法，可以按顺序枚举每一个数，然后再依此向左遍历。
-但是当数列单调递减时，复杂度是严格的O(n^2)。</p>
-
-<p>此时我们便可以利用单调栈在O(n)的复杂度下实现</p>
-
-<p>我们按顺序遍历数组，然后构造一个单调递增栈</p>
-
-<ol>
-<li>i = 1时，因栈为空，L[1] = 0，此时再将第一个元素的位置下标1存入栈中</li>
-</ol>
-
-<p>此时栈中情况：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈4.png" alt="" /></p>
-
-<ol>
-<li>i = 2时，因当前3小于栈顶元素对应的元素5，故将5弹出栈
-此时栈为空,故L[2] = 0然后将元素3对应的位置下标2存入栈中</li>
-</ol>
-
-<p>此时栈中情况：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈5.png" alt="" /></p>
-
-<ol>
-<li>.i = 3时，因当前7大于栈顶元素对应的元素3，故
-L[3] = S.top() = 2 (栈顶元素的值)</li>
-</ol>
-
-<p>然后将元素7对应的下标3存入栈
-此时栈中情况：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈6.png" alt="" /></p>
-
-<ol>
-<li>i = 4时，为保持单调递增的性质，应将栈顶元素3弹出
-此时 L[4] = S.top() = 2;</li>
-</ol>
-
-<p>然后将元素4对应的下标3存入栈
-此时栈中情况：</p>
-
-<p><img src="https://togiv.github.io/images/单调栈7.png" alt="" /></p>
-
-<p>至此 算法结束</p>
-
-<p>对应的结果：</p>
-
-<p>a : 5 3 7 4</p>
-
-<p>L : 0 0 2 2</p>
-
-<p>&#8195;总结：一个元素向左遍历的第一个比它小的数的位置就是将它插入单调栈时
-栈顶元素的值，若栈为空，则说明不存在这么一个数。然后将此元素的下标存入栈，
-就能类似迭代般地求解后面的元素</p>
-
-<h2 id="四-延伸">四.延伸</h2>
-
-<p>&#8195;有让求每个元素<code>两边</code>的离的最近的比它小的数，这时元素弹出的时候，左边照常收集，不过多收集一组信息<code>R</code>,记录是哪个元素让它弹出的，下标记录到<code>R</code>中,这样<code>L</code>中记录了左边离它最近的比它小的数，<code>R</code>中记录了右边离它最近的比它小的数</p>
-
-<p>特殊情况就是，所有元素都进栈之后，栈中剩余的元素怎么算，只需要将栈中元素依次弹出，正常记录左边的比它小的值的下标，而<code>R</code>数组中，凡是不因元素的进入而弹出，而是因为清空栈自动弹出的元素，所对应的<code>R</code>数组中的值都为空，即不存在。</p>
-
-<h2 id="五-代码实现">五. 代码实现</h2>
-
-<p><em>代码实现中只在元素弹出的时候记录它左右两边的值。元素进栈的时候不做任何操作</em></p>
+<h2 id="代码实现">代码实现</h2>
 
 <pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;stack&gt;
 using namespace std;
-int main(){
-	int a[100];
-	int L[100];
-	int R[100];
-	stack&lt;int&gt; s;
-	int n;
-	int temp;
-	a[0] = 0;
-	cin&gt;&gt;n;
-	for(int i=1;i&lt;=n;i++){
-		cin&gt;&gt;a[i];
-			while(!s.empty() &amp;&amp; a[i]&lt;=a[s.top()]){
-				temp = s.top();
-				s.pop();
-				L[temp] = s.top();  //记录它左边的紧挨着的比它小的值
-				R[temp] = i;		//i让它弹出，i就是右边最近的比它小的值，都记录下标的信息
-			}
-			s.push(i);
-	}
-	while(!s.empty()){
-		int temp = s.top();
-		s.pop();
-		L[temp] = s.top();
-		R[temp] = 0;  //主动弹出，右边没有比它小的，记为空
-	}
-	for(int k=1;k&lt;=n;k++){
-		cout&lt;&lt;&quot;左边最近&quot;&lt;&lt;(L[k]==0 ? 0:a[L[k]])&lt;&lt;&quot; &quot;&lt;&lt;&quot;元素&quot;&lt;&lt;a[k]&lt;&lt;&quot; &quot;&lt;&lt;&quot;右边最近&quot;&lt;&lt;(R[k]==0?0:a[R[k]])&lt;&lt;endl;
+void oppsit(int a[4][5],int row1,int row2,int col1,int col2,bool f);  /*f为标志位，表示是向右上还是左下*/
+void print(int a[4][5],int row1,int row2,int col1,int col2,int maxr,int maxc)
+{
+	int crow = row1;
+	int ccol = col1;
+	bool f=false;
+	while(row1 != (maxr + 1))/*到最右边停止*/
+	{
+		oppsit(a,row1,row2,col1,col2,f);
+        /*向右向下延伸*/
+		row1 = col1 == maxc ? row1 + 1 : row1;
+		col1 = col1 == maxc ? col1 : col1 + 1;
+		col2 = row2 == maxr ? col2 + 1 : col2;
+		row2 = row2 == maxr ? row2 : row2 + 1;	
+		f = !f; /*f转变方向*/
 	}
 }
+/*打印之字同一条线上的数据*/
+void oppsit(int a[4][5],int row1,int row2,int col1,int col2,bool f)
+{
+	
+	if(f)
+	{
+		while(row1&lt;=row2)
+		{
+			cout&lt;&lt;a[row1++][col1--]&lt;&lt;&quot;  &quot;;
+	    }
+	}
+	else
+	{
+		while(row2&gt;=row1)
+		{
+			cout&lt;&lt;a[row2--][col2++]&lt;&lt;&quot;  &quot;;
+		}
+	}
+	
+}
+int main()
+{
+	int a[4][5]={1,3,5,8,4,9,34,89,34,0,34,2,6,7,34,65,87,234,6,23};
+	print(a,0,0,0,0,3,4);
+}
 </code></pre>
-
-<p>本文参考链接：<a href="https://blog.csdn.net/WuBaizhe/article/details/70136174">https://blog.csdn.net/WuBaizhe/article/details/70136174</a></p>
               
             </div>
           </div>
@@ -415,9 +319,7 @@ int main(){
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%A0%88/">栈</a>
-
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%95%B0%E7%BB%84/">数组</a>
 
                   </div>
                 
@@ -430,7 +332,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E8%BD%AC%E5%9C%88%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/" data-tooltip="转圈打印数组">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E9%98%B5/" data-tooltip="最大子矩阵">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -438,7 +340,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" data-tooltip="双端队列">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E8%BD%AC%E5%9C%88%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/" data-tooltip="转圈打印数组">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -498,7 +400,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E8%BD%AC%E5%9C%88%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/" data-tooltip="转圈打印数组">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E9%98%B5/" data-tooltip="最大子矩阵">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -506,7 +408,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" data-tooltip="双端队列">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E8%BD%AC%E5%9C%88%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84/" data-tooltip="转圈打印数组">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -655,9 +557,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E5%8D%95%E8%B0%83%E6%A0%88\/';
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84\/';
           
-            this.page.identifier = '\/2019\/10\/%E5%8D%95%E8%B0%83%E6%A0%88\/'
+            this.page.identifier = '\/2019\/10\/%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E6%95%B0%E7%BB%84\/'
           
         };
         (function() {

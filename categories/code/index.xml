@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>单调栈 on Ferry</title>
-    <link>https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/</link>
-    <description>Recent content in 单调栈 on Ferry</description>
+    <title>code on Ferry</title>
+    <link>https://togiv.github.io/categories/code/</link>
+    <description>Recent content in code on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 03 Oct 2019 17:06:47 +0800</lastBuildDate>
     
-	<atom:link href="https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://togiv.github.io/categories/code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,15 +17,6 @@
       <pubDate>Thu, 03 Oct 2019 17:06:47 +0800</pubDate>
       
       <guid>https://togiv.github.io/2019/10/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E9%98%B5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>单调栈</title>
-      <link>https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/</link>
-      <pubDate>Thu, 03 Oct 2019 06:54:20 +0800</pubDate>
-      
-      <guid>https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/</guid>
       <description></description>
     </item>
     
