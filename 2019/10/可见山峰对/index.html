@@ -7,40 +7,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="优先队列">
+<meta name="keywords" content="可见山峰对">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#43;&#43;STL 优先队列">
-<meta name="twitter:title" content="C&#43;&#43;STL 优先队列">
-<meta property="og:url" content="https://togiv.github.io/2019/10/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-<meta property="twitter:url" content="https://togiv.github.io/2019/10/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+<meta property="og:title" content="可见山峰对">
+<meta name="twitter:title" content="可见山峰对">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9/">
 <meta property="og:site_name" content="Ferry">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-04T20:41:50">
+    <meta property="article:published_time" content="2019-10-06T17:10:45">
   
   
-    <meta property="article:modified_time" content="2019-10-04T20:41:50">
+    <meta property="article:modified_time" content="2019-10-06T17:10:45">
   
-  
-  
-    
-      <meta property="article:section" content="算法">
-    
-      <meta property="article:section" content="队列">
-    
   
   
     
-      <meta property="article:tag" content="队列">
+      <meta property="article:section" content="算法学习">
     
-      <meta property="article:tag" content="优先队列">
+      <meta property="article:section" content="算法讲解">
+    
+  
+  
+    
+      <meta property="article:tag" content="单调栈">
     
   
 
@@ -61,14 +59,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
 
 
-    <title>C&#43;&#43;STL 优先队列</title>
+    <title>可见山峰对</title>
 
     <link rel="icon" href="https://togiv.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://togiv.github.io/2019/10/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,19 +216,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      C&#43;&#43;STL 优先队列
+      可见山峰对
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-04T20:41:50&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-06T17:10:45&#43;08:00">
         
   
   
   
   
-    4 十月 2019
+    6 十月 2019
   
 
       </time>
@@ -240,9 +238,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95">算法</a>, 
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e5%ad%a6%e4%b9%a0">算法学习</a>, 
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e9%98%9f%e5%88%97">队列</a>
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e8%ae%b2%e8%a7%a3">算法讲解</a>
     
   
 
@@ -252,195 +250,211 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h2 id="一-相关定义">一、相关定义</h2>
+              <h2 id="题目描述">题目描述：</h2>
 
-<p>&#8195;优先队列容器与队列一样，只能从队尾插入元素，从队首删除元素。
-但是它有一个特性，就是队列中最大的元素总是位于队首，所以出队时，并非按照先进先出的原则进行，而是将当前队列中最大的元素出队。
-这点类似于给队列里的元素进行了由大到小的顺序排序。元素的比较规则默认按元素值由大到小排序，可以重载“&lt;”操作符来重新定义比较规则。</p>
+<p>&#8195;一个不含有负数的数组可以代表一圈环形山，每个位置的值代表山的高度，比如｛3，1，2，4，5｝、｛4，5，3，1，2｝或｛1，2，4，5，3｝都代表同样结构的环形山。3-&gt;1-&gt;2-&gt;4-&gt;5-&gt;3方向叫做next方向(逆时针)，3-&gt;5-&gt;4-&gt;2-&gt;1-&gt;3方向叫做last方向叫做last方向（顺时针）</p>
 
-<p>&#8195;优先级队列可以用向量(vector)或双向队列(deque)来实现(注意list container不能用来实现queue，因为list的迭代器不是任意存取iterator，而pop中用到堆排序时是要求randomaccess iterator 的!)：</p>
+<p>山峰A和山峰B能够相互看见的条件为：</p>
 
-<p>priority_queue&lt; vector&lt; int&gt;, less&lt; int&gt; &gt; pq1; 　　　 // 使用递增less&lt; int&gt;函数对象排序</p>
+<p>1、如果A和B是同一座山，认为互相看不见</p>
 
-<p>priority_queue&lt; deque&lt; int&gt;, greater&lt; int&gt; &gt; pq2; 　　// 使用递减greater&lt; int&gt;函数对象排序</p>
+<p>2、如果A和B是不同的山，并且在环中相邻，认为可以相互看见</p>
 
-<p>其成员函数有“判空(empty)” 、“尺寸(Size)” 、“栈顶元素(top)” 、“压栈(push)” 、“弹栈(pop)”等。</p>
+<p>3、如果A和B是不同的山，并且在环中不相邻，假设两座山高度最小值为min。如果A通过next方向到B的途中没有高度比min大的山峰，或者A通过last方向到B的途中没有高度比min大的山峰，认为A和B可以相互看见</p>
 
-<h2 id="二-priority-queue">二、priority_queue</h2>
+<p>给定一个不含负数的数组arr，请返回有多少对山峰可以互相看见</p>
 
-<p>基本操作：</p>
+<h2 id="分析">分析：</h2>
 
-<p>empty() 　　   如果队列为空，则返回真</p>
+<p>两座山峰算作一对比如(1，3)和(3，1)是一对
++ 假如没有重复的值</p>
 
-<p>pop()　　　　删除队顶元素，删除第一个元素</p>
+<p><img src="./可见山峰对1.png" alt="" /></p>
 
-<p>push() 　　     加入一个元素</p>
+<p>如果有一座山峰，则结果为0，</p>
 
-<p>size() 　　　  返回优先队列中拥有的元素个数</p>
+<p>如果有两座山峰则结果为1，</p>
 
-<p>top() 　　　　返回优先队列对顶元素，返回优先队列中有最高优先级的元素</p>
+<p>如果有多座山峰，先找到整个山峰中的最高和次高的山峰，任意一座山峰i，可向两个方向延伸，如果碰到离自己最近的比自己高的就停止，所以从一座山峰出发一定能找到两对，（一对山峰对中我们选择较低的那一个作为开始）一共有n座山，减去最高和次高还剩n-2座山，一定存在2*(n-2)个山峰对可看见，再加上最高和次高那一对，一共存在2*n-3对；</p>
 
-<p>在默认的优先队列中，优先级高的先出队。在默认的int型中先出队的为较大的数。</p>
+<ul>
+<li>如果有重复值
+就需要用到<a href="https://togiv.github.io/2019/10/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a></li>
+</ul>
 
-<p>头文件：</p>
+<p>先找到最大值，压入栈底，同时记录山峰的数量，如果有多个最大值，压入第一个出现的最大的，接着从最大值出发顺时针压入山峰，如果压入的山峰的高度比栈顶的小就压入，如果压入的山峰的高度和栈顶相同，就将栈顶山峰数量加1，如果压入的山峰的高度比栈顶的大，就将栈顶元素弹出，弹出的时候就结算</p>
 
-<p>#include <queue></p>
+<p><img src="./可见山峰对2.png" alt="" /></p>
 
-<p>声明方式：</p>
+<p>&#8195;因为是从最大值压入的，所以结算的时候下边一定有比自己大的山峰，右边比自己大的山峰是比自己出栈的那个，结算的规则是：</p>
 
-<ol>
-<li>普通方法：</li>
-</ol>
+<p>如果弹出的山峰数量是1 ，结算为两对</p>
 
-<p>priority_queue&lt; int&gt; q;   　　　　　　　　　　　　  //通过操作，按照元素从大到小的顺序出队</p>
+<p>&#8195;如果弹出的山峰的数量为K，结算的结果为k个里面任选两个组成一对共C<sup>2</sup><sub>k</sub>个，再加上k个山峰到两头最大值的个数2*k个总共是(C<sup>2</sup><sub>k</sub>+2*k)个</p>
 
-<p>priority_queue&lt; int,vector&lt; int&gt;, greater&lt; int&gt; &gt; q;  　　//通过操作，按照元素从小到大的顺序出队
-2. 自定义优先级：</p>
+<p>&#8195;数组遍历完毕栈中还有剩余：若还剩三层及以上，那么三层及以上左边和右边都有最大值(右边最大值为栈底的最大值)，结算为(C<sup>2</sup><sub>k</sub>+2 * k),</p>
 
-<p>struct cmp {<br />
-　　operator bool ()(int x, int y)<br />
-　　{<br />
-　　　　 return　x &gt; y;　　 // x小的优先级高       //也可以写成其他方式，如： return p[x] &gt; p[y];表示p[i]小的优先级高
-　　}
-};
-priority_queue&lt; int, vector&lt; int&gt;, cmp&gt; q;    //定义方法
-//其中，第二个参数为容器类型。第三个参数为比较函数。
-3. 结构体声明方式：</p>
+<p>&#8195;到了最后两层，因为倒数第二层左边最大值和右边最大值是同一个值，都为栈底元素，所以栈底元素的数量就决定了结算的值为多少，若栈底最大元素只有一个则结算为(C<sup>2</sup><sub>k</sub>+k)个，若栈底最大元素有多个则结算为(C<sup>2</sup><sub>k</sub>+2 * k)个，</p>
 
-<p>struct node {<br />
-　　int x, y;<br />
-　　friend bool operator &lt; (node a, node b)<br />
-　　{<br />
-　　　　return a.x &gt; b.x;    //结构体中，x小的优先级高<br />
-　　}
-};
-priority_queue&lt; node&gt;q;   //定义方法
-//在该结构中，y为值, x为优先级。
-//通过自定义operator&lt;操作符来比较元素中的优先级。
-//在重载”&lt;”时，最好不要重载”&gt;”，可能会发生编译错误</p>
+<p>&#8195;栈底元素结算的时候，栈底元素为最大值结算为C<sup>2</sup><sub>k</sub>个</p>
+
+<p><img src="./可见山峰对3.png" alt="" /></p>
+
+<p>至此分析结束，就按照有重复数字来实现</p>
 
 <h2 id="代码实现">代码实现</h2>
 
-<pre><code class="language-c++">/*优先队列的基本使用 */
-#include&lt;stdio.h&gt; 
-#include&lt;functional&gt; 
-#include&lt;queue&gt; 
-#include&lt;vector&gt; 
-using namespace std; 
-//定义结构，使用运算符重载,自定义优先级1 
-struct cmp1{ 
-    bool operator ()(int &amp;a,int &amp;b){ 
-        return a&gt;b;//最小值优先 
-    } 
-}; 
-struct cmp2{ 
-    bool operator ()(int &amp;a,int &amp;b){ 
-        return a&lt;b;//最大值优先 
-    } 
-}; 
-//定义结构，使用运算符重载,自定义优先级2 
-struct number1{ 
-    int x; 
-    bool operator &lt; (const number1 &amp;a) const { 
-        return x&gt;a.x;//最小值优先 
-    } 
-}; 
-struct number2{ 
-    int x; 
-    bool operator &lt; (const number2 &amp;a) const { 
-        return x&lt;a.x;//最大值优先 
-    } 
-}; 
-int a[]={14,10,56,7,83,22,36,91,3,47,72,0}; 
-number1 num1[]={14,10,56,7,83,22,36,91,3,47,72,0}; 
-number2 num2[]={14,10,56,7,83,22,36,91,3,47,72,0}; 
-   
-int main() 
-{   priority_queue&lt; int&gt;que;//采用默认优先级构造队列 
-   
-    priority_queue&lt;int,vector&lt;int&gt;,cmp1&gt;que1;//最小值优先 
-    priority_queue&lt;int,vector&lt;int&gt;,cmp2&gt;que2;//最大值优先 
-   
-    priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt;que3;//注意“&gt;&gt;”会被认为错误， 
-                                                      //这是右移运算符，所以这里用空格号隔开 
-    priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt;que4;////最大值优先 
-   
-    priority_queue&lt;number1&gt;que5; 
-    priority_queue&lt;number2&gt;que6; 
-   
-    int i; 
-    for(i=0;a[i];i++){ 
-        que.push(a[i]); 
-        que1.push(a[i]); 
-        que2.push(a[i]); 
-        que3.push(a[i]); 
-        que4.push(a[i]); 
-    } 
-    for(i=0;num1[i].x;i++) 
-        que5.push(num1[i]); 
-    for(i=0;num2[i].x;i++) 
-        que6.push(num2[i]); 
-   
-   
-    printf(&quot;采用默认优先关系:\n(priority_queue&lt;int&gt;que;)\n&quot;); 
-    printf(&quot;Queue 0:\n&quot;); 
-    while(!que.empty()){ 
-        printf(&quot;%3d&quot;,que.top()); 
-        que.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    puts(&quot;&quot;); 
-   
-    printf(&quot;采用结构体自定义优先级方式一:\n(priority_queue&lt;int,vector&lt;int&gt;,cmp&gt;que;)\n&quot;); 
-    printf(&quot;Queue 1:\n&quot;); 
-    while(!que1.empty()){ 
-        printf(&quot;%3d&quot;,que1.top()); 
-        que1.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    printf(&quot;Queue 2:\n&quot;); 
-    while(!que2.empty()){ 
-        printf(&quot;%3d&quot;,que2.top()); 
-        que2.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    puts(&quot;&quot;); 
-    printf(&quot;采用头文件\&quot;functional\&quot;内定义优先级:\n(priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt;/less&lt;int&gt; &gt;que;)\n&quot;); 
-    printf(&quot;Queue 3:\n&quot;); 
-    while(!que3.empty()){ 
-        printf(&quot;%3d&quot;,que3.top()); 
-        que3.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    printf(&quot;Queue 4:\n&quot;); 
-    while(!que4.empty()){ 
-        printf(&quot;%3d&quot;,que4.top()); 
-        que4.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    puts(&quot;&quot;); 
-    printf(&quot;采用结构体自定义优先级方式二:\n(priority_queue&lt;number&gt;que)\n&quot;); 
-    printf(&quot;Queue 5:\n&quot;); 
-    while(!que5.empty()){ 
-        printf(&quot;%3d&quot;,que5.top()); 
-        que5.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    printf(&quot;Queue 6:\n&quot;); 
-    while(!que6.empty()){ 
-        printf(&quot;%3d&quot;,que6.top()); 
-        que6.pop(); 
-    } 
-    puts(&quot;&quot;); 
-    return 0; 
-} 
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;stack&gt;
+#define maxsize 1000
+using namespace std;
+
+struct z{   //定义栈中压入的结构
+	int data;  //压入的值
+	int size;   //值的个数
+	z(){
+		size=0;
+	}
+};
+stack&lt;z&gt; s;
+int a[maxsize];
+
+int jiesuan(int number){   //结算函数
+	if(number==1)
+		return 2;
+	else{
+		return number * (number-1) / 2 + number * 2;	}	
+}
+
+
+int in(int a[maxsize],int n,int flag){
+	int res=0;
+	
+	for(int i=flag;i&lt;n;i++){   //从第一个最大值开始压栈
+		if(s.empty()){ //栈为空则直接压入，继续执行下一次
+			z node4;
+			node4.size = 1;
+			node4.data = a[i];
+			s.push(node4);
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;
+			continue;
+		}
+		if(a[i]&gt;s.top().data){   //栈不为空，若要压的元素大于栈顶元素
+		while(!s.empty() &amp;&amp; a[i]&gt;s.top().data){ //栈顶元素弹出
+			z node1;
+			node1 = s.top();
+			int number = node1.size;
+			res += jiesuan(number);  //栈顶元素弹出就结算
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;出栈&quot;&lt;&lt;endl;
+			s.pop();
+			}
+			z node5;
+			node5.size = 1;
+			node5.data = a[i];
+			s.push(node5);  //弹出完成后把要压的值压入栈中
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;
+		}
+        //栈顶元素大于要压的值
+		else if(!s.empty() &amp;&amp; a[i]&lt;s.top().data){ 
+				z node;
+				node.data = a[i];
+				node.size = 1;
+				s.push(node);   //直接压入
+				cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;		
+		}
+			
+		else if(!s.empty() &amp;&amp; a[i]==s.top().data)  
+        //栈顶元素等于要压的值，栈顶元素数量加1
+				s.top().size++;
+		}
+	//走到头之后从0开始压入最大值之前的数，操作和上述过程完全一样
+	for(int i=0;i&lt;flag;i++){ 
+		if(s.empty()){
+			z node4;
+			node4.size = 1;
+			node4.data = a[i];
+			s.push(node4);
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;
+			continue;
+		}
+		if(a[i]&gt;s.top().data){
+		while(!s.empty() &amp;&amp; a[i]&gt;s.top().data){
+			z node1;
+			node1 = s.top();
+			int number = node1.size;
+			res += jiesuan(number);
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;出栈&quot;&lt;&lt;endl;
+			s.pop();
+			}
+			z node5;
+			node5.size = 1;
+			node5.data = a[i];
+			s.push(node5);
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;
+		}
+		else if(!s.empty() &amp;&amp; a[i]&lt;s.top().data){
+				z node;
+				node.data = a[i];
+				node.size = 1;
+				s.push(node);
+				cout&lt;&lt;s.top().data&lt;&lt;&quot;入栈&quot; &lt;&lt;endl;		
+		}
+			
+		else if(!s.empty() &amp;&amp; a[i]==s.top().data)
+				s.top().size++;
+		
+	}
+	//原数组的元素全部压入栈中，栈中最后有剩余
+	while(!s.empty()){
+		if(s.size()&gt;=3){ //剩余数量大于3  
+			z node2;
+			node2 = s.top();
+			int number = node2.size;
+			res += jiesuan(number); // 弹出结算，规则和压入弹出的规则一样
+			cout&lt;&lt;s.top().data&lt;&lt;&quot;出栈&quot;&lt;&lt;endl;
+			s.pop();
+		}else{
+			if(s.size()==2){ //数量等于二
+				z node3;
+				node3 = s.top();
+				cout&lt;&lt;s.top().data&lt;&lt;&quot;出栈&quot;&lt;&lt;endl;
+				s.pop();
+				if(s.top().size==1){   //看栈底元素的个数 ,只有一个
+					res += jiesuan(node3.size)-node3.size;
+				}else  //栈底元素的个数多余一个
+				{
+					res +=jiesuan(node3.size);
+				}
+			}
+			if(s.size()==1){  //只有栈底有元素
+				if(s.top().size&gt;1)
+					res += s.top().size *( s.top().size-1)/2;//结算
+				cout&lt;&lt;s.top().data&lt;&lt;&quot;出栈&quot;&lt;&lt;endl;
+				s.pop();
+			} 
+		}
+		
+	}
+	
+	return res;
+}
+
+
+int main(){
+	int n;
+	cin&gt;&gt;n;
+	int max=0;
+	int flag;
+	for(int i=0;i&lt;n;i++){
+		cin&gt;&gt;a[i];
+		if(max&lt;a[i]){
+			max = a[i];
+			flag = i;
+		}
+	}
+	cout&lt;&lt;in(a,n,flag)&lt;&lt;endl;
+}
 </code></pre>
-
-<p>本文转自<a href="https://www.cnblogs.com/xzxl/p/7266404.html">https://www.cnblogs.com/xzxl/p/7266404.html</a></p>
-
-<p>也K可以自己实现优先队列，详情见<a href="https://blog.csdn.net/zhangxiangdavaid/article/details/30113413">这里</a></p>
-
-<p>感谢原作者分享</p>
               
             </div>
           </div>
@@ -452,9 +466,7 @@ int main()
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E9%98%9F%E5%88%97/">队列</a>
-
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
 
                   </div>
                 
@@ -467,7 +479,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9/" data-tooltip="可见山峰对">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" data-tooltip="滑动窗口">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -475,7 +487,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E9%98%B5/" data-tooltip="最大子矩阵">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" data-tooltip="C&#43;&#43;STL 优先队列">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -535,7 +547,7 @@ int main()
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9/" data-tooltip="可见山峰对">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" data-tooltip="滑动窗口">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -543,7 +555,7 @@ int main()
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E9%98%B5/" data-tooltip="最大子矩阵">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" data-tooltip="C&#43;&#43;STL 优先队列">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -692,9 +704,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97\/';
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9\/';
           
-            this.page.identifier = '\/2019\/10\/c-stl-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97\/'
+            this.page.identifier = '\/2019\/10\/%E5%8F%AF%E8%A7%81%E5%B1%B1%E5%B3%B0%E5%AF%B9\/'
           
         };
         (function() {
