@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on Ferry</title>
+    <link>https://togiv.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on Ferry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Oct 2019 19:50:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://togiv.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>爬虫多线程使用</title>
+      <link>https://togiv.github.io/2019/10/%E7%88%AC%E8%99%AB%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 16 Oct 2019 19:50:08 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/2019/10/%E7%88%AC%E8%99%AB%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
