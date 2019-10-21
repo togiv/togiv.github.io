@@ -7,38 +7,36 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="多元线性回归">
+<meta name="keywords" content="一元线性回归">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多元线性回归">
-<meta name="twitter:title" content="多元线性回归">
-<meta property="og:url" content="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
-<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
+<meta property="og:title" content="一元线性回归">
+<meta name="twitter:title" content="一元线性回归">
+<meta property="og:url" content="https://togiv.github.io/2019/10/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/10/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
 <meta property="og:site_name" content="Ferry">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-20T22:07:15">
+    <meta property="article:published_time" content="2019-10-21T10:06:29">
   
   
-    <meta property="article:modified_time" content="2019-10-20T22:07:15">
+    <meta property="article:modified_time" content="2019-10-21T10:06:29">
   
   
   
     
       <meta property="article:section" content="机器学习">
     
-      <meta property="article:section" content="多元线性回归">
+      <meta property="article:section" content="线性回归">
     
   
   
-    
-      <meta property="article:tag" content="机器学习">
     
       <meta property="article:tag" content="线性回归">
     
@@ -61,14 +59,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
 
 
-    <title>多元线性回归</title>
+    <title>一元线性回归</title>
 
     <link rel="icon" href="https://togiv.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
+    <link rel="canonical" href="https://togiv.github.io/2019/10/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,19 +216,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      多元线性回归
+      一元线性回归
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-20T22:07:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-21T10:06:29&#43;08:00">
         
   
   
   
   
-    20 十月 2019
+    21 十月 2019
   
 
       </time>
@@ -242,7 +240,7 @@
     
       <a class="category-link" href="https://togiv.github.io/categories/%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0">机器学习</a>, 
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92">多元线性回归</a>
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92">线性回归</a>
     
   
 
@@ -252,41 +250,18 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h3 id="什么是多元线性回归">什么是多元线性回归</h3>
+              <h3 id="什么是一元线性回归">什么是一元线性回归</h3>
 
-<p>&#8195;我们知道y=ax+b是一元一次方程,y=aX<sub>1</sub>+bX<sub>2</sub>+c是二元一次方程.其中,&ldquo;次&rdquo;指的是未知数的最大幂数,&ldquo;元&rdquo;指的是表达式中未知数的个数（这里就是x的个数）.那么&rdquo;多元&rdquo;的意思可想而知,就是表达式中x(或者叫自变量,也叫属性)有很多个.</p>
+<p>&#8195;一元线性回归是分析只有一个自变量（自变量x和因变量y）线性相关关系的方法。一个经济指标的数值往往受许多因素影响，若其中只有一个因素是主要的，起决定性作用，则可用一元线性回归进行预测分析。</p>
 
-<p>&#8195;当b=0时,我们说y=ax,y和x的大小始终符合y/x=a,图像上任意一点的坐标,y值都是x值的a倍.我们把这种横纵坐标始终呈固定倍数的关系叫做&rdquo;线性&rdquo;.线性函数的图像是一条直线.所以我们知道了多元线性回归函数的图像一定也是一条直线.</p>
+<h3 id="一元线性回归的推导">一元线性回归的推导</h3>
 
-<p>&#8195;多元线性回归就是:用多个x(变量或属性)与结果y的关系式 来描述一些散列点之间的共同特性.</p>
+<p><img src="https://togiv.github.io/images/一元线性回归1.jpg" alt="" /></p>
 
-<p>&#8195;这些x和一个y关系的图像并不完全满足任意两点之间的关系(两点一线),但这条直线是综合所有的点,最适合描述他们共同特性的,因为他到所有点的距离之和最小也就是总体误差最小.
-所以多元线性回归的表达式可以写成:</p>
+<p><img src="https://togiv.github.io/images/一元线性回归2.jpg" alt="" /></p>
 
-<p>y= w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub></p>
-
-<p>&#8195;我们知道y=ax+b这个线性函数中,b表示截距.我们又不能确定多元线性回归函数中预测出的回归函数图像经过原点,所以在多元线性回归函数中,需要保留一项常数为截距.所以我们规定</p>
-
-<p>y= w<sub>0</sub>x<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub></p>
-
-<p>这样多元线性回归函数就变成了:</p>
-
-<p>y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub></p>
-
-<p>如果没有w0项,我们  
-y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<sub>3</sub>x<sub>3</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub>就是一个由n+1个自变量所构成的图像经过原点的直线函数.那么就会导致我们一直在用一条经过原点的直线来概括描述一些散列点的分布规律.这样显然增大了局限性,造成的结果就是预测出的结果函数准确率大幅度下降.</p>
-
-<h3 id="多元线性回归的推导过程">多元线性回归的推导过程</h3>
-
-<p><img src="https://togiv.github.io/images/多元线性回归1.jpg" alt="" /></p>
-
-<p><img src="https://togiv.github.io/images/多元线性回归2.jpg" alt="" /></p>
-
-<p><img src="https://togiv.github.io/images/多元线性回归3.jpg" alt="" /></p>
-
-<p><img src="https://togiv.github.io/images/多元线性回归4.jpg" alt="" /></p>
-
-<p>&#8195;因为在使用解析解求解最小二乘的过程中，出现了矩阵求逆的步骤。因为有些矩阵没有逆矩阵，只能使用近似矩阵来代替，所以结果的精度会降低。二则矩阵求逆随着维度的增加，计算量也大大增加，求解速度变慢。</p>
+<p>下一篇：
+<a href="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">多元线性回归</a></p>
               
             </div>
           </div>
@@ -298,8 +273,6 @@ y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<s
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-
   <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">线性回归</a>
 
                   </div>
@@ -313,7 +286,7 @@ y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<s
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" data-tooltip="一元线性回归">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/" data-tooltip="线性回归中的正则化">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -321,7 +294,7 @@ y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<s
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/python%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" data-tooltip="Python字符编码">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" data-tooltip="多元线性回归">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -381,7 +354,7 @@ y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<s
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" data-tooltip="一元线性回归">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/" data-tooltip="线性回归中的正则化">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -389,7 +362,7 @@ y= w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + w<s
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/python%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" data-tooltip="Python字符编码">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" data-tooltip="多元线性回归">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -538,9 +511,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92\/';
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92\/';
           
-            this.page.identifier = '\/2019\/10\/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92\/'
+            this.page.identifier = '\/2019\/10\/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92\/'
           
         };
         (function() {
