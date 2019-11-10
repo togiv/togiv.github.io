@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Ferry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 24 Oct 2019 20:32:21 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2019 15:54:05 +0800</lastBuildDate>
     
 	<atom:link href="https://togiv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>算法</title>
+      <link>https://togiv.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 10 Nov 2019 15:54:05 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/tags/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dijkstra算法</title>
+      <link>https://togiv.github.io/tags/dijkstra%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 10 Nov 2019 15:53:51 +0800</pubDate>
+      
+      <guid>https://togiv.github.io/tags/dijkstra%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>

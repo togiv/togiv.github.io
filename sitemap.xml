@@ -4,17 +4,62 @@
   
   <url>
     <loc>https://togiv.github.io/categories/</loc>
-    <lastmod>2019-10-24T20:32:21+08:00</lastmod>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/categories/coding/</loc>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://togiv.github.io/</loc>
-    <lastmod>2019-10-24T20:32:21+08:00</lastmod>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://togiv.github.io/post/</loc>
-    <lastmod>2019-10-24T20:32:21+08:00</lastmod>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/tags/</loc>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/categories/%E7%89%9B%E5%AE%A2/</loc>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/2019/11/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B53/</loc>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-11-10T15:54:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/tags/dijkstra%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-11-10T15:53:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/categories/dijkstra%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-11-10T15:53:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2019-11-10T15:53:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</loc>
+    <lastmod>2019-11-10T15:53:51+08:00</lastmod>
   </url>
   
   <url>
@@ -29,11 +74,6 @@
   
   <url>
     <loc>https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/</loc>
-    <lastmod>2019-10-24T20:32:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://togiv.github.io/tags/</loc>
     <lastmod>2019-10-24T20:32:21+08:00</lastmod>
   </url>
   
@@ -188,11 +228,6 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3/</loc>
-    <lastmod>2019-10-06T17:11:42+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://togiv.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/</loc>
     <lastmod>2019-10-06T17:10:45+08:00</lastmod>
   </url>
@@ -240,11 +275,6 @@
   <url>
     <loc>https://togiv.github.io/tags/%E7%9F%A9%E9%98%B5/</loc>
     <lastmod>2019-10-03T17:06:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://togiv.github.io/categories/coding/</loc>
-    <lastmod>2019-10-03T17:06:31+08:00</lastmod>
   </url>
   
   <url>
@@ -318,12 +348,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/hugo/</loc>
+    <loc>https://togiv.github.io/tags/hugo/</loc>
     <lastmod>2019-10-01T09:19:10+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/hugo/</loc>
+    <loc>https://togiv.github.io/categories/hugo/</loc>
     <lastmod>2019-10-01T09:19:10+08:00</lastmod>
   </url>
   
@@ -338,12 +368,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/scrapy/</loc>
+    <loc>https://togiv.github.io/categories/scrapy/</loc>
     <lastmod>2019-10-01T09:01:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/scrapy/</loc>
+    <loc>https://togiv.github.io/tags/scrapy/</loc>
     <lastmod>2019-10-01T09:01:19+08:00</lastmod>
   </url>
   
@@ -478,12 +508,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E6%95%B0%E5%AD%97/</loc>
+    <loc>https://togiv.github.io/tags/%E6%95%B0%E5%AD%97/</loc>
     <lastmod>2019-10-01T08:04:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/%E6%95%B0%E5%AD%97/</loc>
+    <loc>https://togiv.github.io/categories/%E6%95%B0%E5%AD%97/</loc>
     <lastmod>2019-10-01T08:04:33+08:00</lastmod>
   </url>
   
@@ -498,12 +528,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/%E5%93%88%E5%B8%8C/</loc>
+    <loc>https://togiv.github.io/categories/%E5%93%88%E5%B8%8C/</loc>
     <lastmod>2019-10-01T08:03:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E5%93%88%E5%B8%8C/</loc>
+    <loc>https://togiv.github.io/tags/%E5%93%88%E5%B8%8C/</loc>
     <lastmod>2019-10-01T08:03:19+08:00</lastmod>
   </url>
   
@@ -523,12 +553,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/%E6%A0%91/</loc>
+    <loc>https://togiv.github.io/categories/%E6%A0%91/</loc>
     <lastmod>2019-10-01T07:58:31+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E6%A0%91/</loc>
+    <loc>https://togiv.github.io/tags/%E6%A0%91/</loc>
     <lastmod>2019-10-01T07:58:31+08:00</lastmod>
   </url>
   
@@ -593,12 +623,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
+    <loc>https://togiv.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
     <lastmod>2019-09-30T22:13:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
+    <loc>https://togiv.github.io/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/</loc>
     <lastmod>2019-09-30T22:13:52+08:00</lastmod>
   </url>
   
@@ -763,12 +793,12 @@
   </url>
   
   <url>
-    <loc>https://togiv.github.io/tags/%E5%9B%BE/</loc>
+    <loc>https://togiv.github.io/categories/%E5%9B%BE/</loc>
     <lastmod>2019-09-30T11:35:46+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://togiv.github.io/categories/%E5%9B%BE/</loc>
+    <loc>https://togiv.github.io/tags/%E5%9B%BE/</loc>
     <lastmod>2019-09-30T11:35:46+08:00</lastmod>
   </url>
   

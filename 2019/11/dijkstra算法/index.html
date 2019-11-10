@@ -7,40 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="Ferry">
-<meta name="keywords" content="Python生成验证码">
+<meta name="keywords" content="Dijkstra算法">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python生成验证码">
-<meta name="twitter:title" content="Python生成验证码">
-<meta property="og:url" content="https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">
-<meta property="twitter:url" content="https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">
+<meta property="og:title" content="Dijkstra算法">
+<meta name="twitter:title" content="Dijkstra算法">
+<meta property="og:url" content="https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/">
+<meta property="twitter:url" content="https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/">
 <meta property="og:site_name" content="Ferry">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-10-24T20:32:21">
+    <meta property="article:published_time" content="2019-11-10T15:53:51">
   
   
-    <meta property="article:modified_time" content="2019-10-24T20:32:21">
+    <meta property="article:modified_time" content="2019-11-10T15:53:51">
   
-  
-  
-    
-      <meta property="article:section" content="Python">
-    
-      <meta property="article:section" content="小把戏">
-    
   
   
     
-      <meta property="article:tag" content="python">
+      <meta property="article:section" content="算法讲解">
     
-      <meta property="article:tag" content="验证码">
+      <meta property="article:section" content="Dijkstra算法">
+    
+  
+  
+    
+      <meta property="article:tag" content="Dijkstra算法">
+    
+      <meta property="article:tag" content="算法">
     
   
 
@@ -61,14 +61,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/ebc5fe73c3f1e5f3831224569a696610?s=640">
 
 
-    <title>Python生成验证码</title>
+    <title>Dijkstra算法</title>
 
     <link rel="icon" href="https://togiv.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">
+    <link rel="canonical" href="https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -218,19 +218,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Python生成验证码
+      Dijkstra算法
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-10-24T20:32:21&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-11-10T15:53:51&#43;08:00">
         
   
   
   
   
-    24 十月 2019
+    10 十一月 2019
   
 
       </time>
@@ -240,9 +240,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://togiv.github.io/categories/python">Python</a>, 
+      <a class="category-link" href="https://togiv.github.io/categories/%e7%ae%97%e6%b3%95%e8%ae%b2%e8%a7%a3">算法讲解</a>, 
     
-      <a class="category-link" href="https://togiv.github.io/categories/%e5%b0%8f%e6%8a%8a%e6%88%8f">小把戏</a>
+      <a class="category-link" href="https://togiv.github.io/categories/dijkstra%e7%ae%97%e6%b3%95">Dijkstra算法</a>
     
   
 
@@ -252,78 +252,182 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h3 id="利用python的pillow库简单的生成验证码">利用python的pillow库简单的生成验证码</h3>
+              <p>系列文章目录：<br />
+单源最短路径（1）：Dijkstra 算法<br />
+单源最短路径（2）：Bellman_Ford 算法<br />
+单源最短路径（3）：SPFA 算法<br />
+单源最短路径（4）：总结</p>
 
-<pre><code class="language-python">#生成指定长度的随机字符
-def procharacter(length):
-    numbers = &quot;&quot;.join(random.choice(charactes) for _ in range(length))
-    return numbers
+<h3 id="一-背景">一：背景</h3>
 
+<p>&#8195;Dijkstra 算法（中文名：迪杰斯特拉算法）是由荷兰计算机科学家 Edsger Wybe Dijkstra 提出。该算法常用于路由算法或者作为其他图算法的一个子模块。举例来说，如果图中的顶点表示城市，而边上的权重表示城市间开车行经的距离，该算法可以用来找到两个城市之间的最短路径。</p>
 
-#生成随机颜色
-def color():
-    r = random.randint(0,255)
-    g = random.randint(0,255)
-    b = random.randint(0,255)
-    return (r,g,b)
+<h3 id="二-算法过程">二：算法过程</h3>
 
+<p>&#8195;我们用一个例子来具体说明迪杰斯特拉算法的流程。</p>
 
-def main(size=(200,100),characternumber=6,bgcolor=(255,255,255)):
-    #创建空白图象和绘图对象
-    image = Image.new('RGB',size,bgcolor)  #k空白图象
-    draw = ImageDraw.Draw(image)
+<p><img src="https://togiv.github.io/images/disktra1.png" alt="" /></p>
+
+<p>定义源点为 0，dist[i]为源点 0 到顶点 i 的最短路径。其过程描述如下：</p>
+
+<p><img src="https://togiv.github.io/images/disktra2.png" alt="" /></p>
+
+<p>第 1 步：从源点 0 开始，找到与其邻接的点：1，2，3，更新dist[]数组，因 0 不与 4 邻接，故dist[4]为正无穷。在dist[]中找到最小值，其顶点为 2，即此时已找到 0 到 2 的最短路。</p>
+
+<p>第 2 步：从 2 开始，继续更新dist[]数组：2 与 1 不邻接，不更新；2 与 3 邻接，因0→2→3比dist[3]大，故不更新dist[3] ；2 与 4 邻接，因0→2→4比dist[4]小，故更新dist[4]为 4。在dist[]中找到最小值，其顶点为 3，即此时又找到 0 到 3 的最短路。</p>
+
+<p>第 3 步：从 3 开始，继续更新dist[]数组：3 与 1 邻接，因0→3→1比dist[1]小，更新dist[1]为 5；3 与 4 邻接，因0→3→4比dist[4]大，故不更新。在dist[]中找到最小值，其顶点为 4，即此时又找到 0 到 4 的最短路。</p>
+
+<p>第 4 步：从 4 开始，继续更新dist[]数组：4 与 1 不邻接，不更新。在dist[]中找到最小值，其顶点为 1，即此时又找到 0 到 1 的最短路。</p>
+
+<p>第 5 步：所有点都已找到，停止。</p>
+
+<p>对于上述步骤，你可能存在以下的疑问：</p>
+
+<p><img src="https://togiv.github.io/images/disktra3.png" alt="" /></p>
+
+<p>&#8195;若 A 作为源点，与其邻接的只有 B，C，D 三点，其dist[]最小时顶点为 C，即就可以确定A→C为 A 到 C 的最短路。但是我们存在疑问的是：是否还存在另一条路径使 A 到 C 的距离更小？ 用反证法证明。</p>
+
+<p>&#8195;假设存在如上图的红色虚线路径，使A→D→C的距离更小，那么A→D作为A→D→C的子路径，其距离也比A→C小，这与前面所述 “dist[]最小时顶点为 C” 矛盾，故假设不成立。因此这个疑问不存在。</p>
+
+<p>&#8195;根据上面的证明，我们可以推断出，Dijkstra 每次循环都可以确定一个顶点的最短路径，故程序需要循环 n-1 次。</p>
+
+<h3 id="三-完整代码">三：完整代码</h3>
+
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+int  matrix[100][100]; // 邻接矩阵
+bool visited[100];     // 标记数组
+int  dist[100];        // 源点到顶点i的最短距离
+int  path[100];        // 记录最短路的路径，记录的是与该点直接相连的最短路径 
+int  source;           // 源点
+int  vertex_num;       // 顶点数
+int  edge_num;         // 边数
+
+void Dijkstra(int source)
+{
+    memset(visited, 0, sizeof(visited));  // 初始化标记数组,都未被访问 
+    visited[source] = true;  //标记源点已被访问 
     
-    #生成并计算宽度和高度
-    text = procharacter(characternumber)   #生成文本
-    font = ImageFont.truetype(&quot;c:\\windows\\fonts\\tahoma.ttf&quot;,48)
-    width,height = draw.textsize(text,font)  #返回text在font字体下的大小
-    if width+2*characternumber&gt;size[0] or height&gt;size[1]:
-        print(&quot;尺寸不合法&quot;)
-        return
-    
-    #绘制随机字符串中的字符
-    startx = 0  #从0开始画
-    widtheach = width // characternumber
-    for i in range(characternumber):
-        startx += widtheach + 1 + random.randint(2,3)
-        #每个字符的y坐标随机生成
-        position = (startx,(size[1]-height)//2+random.randint(-10,10))
-        draw.text(xy=position,text = text[i],font=font,fill=color())
-        
-    #像素位置微调，实现扭曲的效果
-    imagefinal = Image.new('RGB',size,bgcolor)
-    pixelsfinal = imagefinal.load()
-    pixelstemp = image.load()
-    for y in range(size[1]):
-        offset = random.randint(-1,0)
-        for x in range(size[0]):
-            newx = x + offset
-            if newx&lt;0:
-                newx = 0
-            pixelsfinal[newx,y] = pixelstemp[x,y]   #像素
-            
-    #绘制随机颜色的干扰像素
-    draw = ImageDraw.Draw(imagefinal)
-    for i in range(int(size[0]*size[1]*0.1)):  #噪点的密度
-        draw.point((random.randrange(size[0]),random.randrange(size[1])),fill=color())
-        
-    #绘制八条干扰的直线
-    for i in range(8):
-        s = (0,random.randrange(size[1]))
-        e = (size[0],random.randrange(size[1]))
-        draw.line([s,e],fill=color(),width=1)
-        
-    #绘制八条干扰的曲线
-    for i in range(8):
-        s = (-50,-50)
-        e = (size[0]+10,random.randint(0,size[1]+10))
-        draw.arc(s+e,0,360,fill=color())
-    #保存
-    imagefinal.save(&quot;G://验证码.jpg&quot;)
-    imagefinal.show()
-if __name__ == '__main__':
-    main((200,100),6,(255,255,255))
+    /*更新源点到各点的距离*/ 
+    for (int i = 0; i &lt; vertex_num; i++)
+    {
+        dist[i] = matrix[source][i];
+        path[i] = source;  //全都初始为源点到该点的距离 
+    }
+
+    int min_cost;        // 权值最小
+    int min_cost_index;  // 权值最小的下标
+
+    for (int i = 1; i &lt; vertex_num; i++)  // 整个循环的作用:找到源点到另外 vertex_num-1 个点的最短路径即更新dist数组 
+    {
+        min_cost = INT_MAX;
+
+        for (int j = 0; j &lt; vertex_num; j++)  //找到所有相连的权值最小的 
+        {
+            if (visited[j] == false &amp;&amp; dist[j] &lt; min_cost)  // 找到权值最小，保证每次从已找到最短路径集团的最小的权值出发 
+            {
+                min_cost = dist[j];
+                min_cost_index = j;
+            }
+        }
+
+        visited[min_cost_index] = true;  // 权值最小的点已找到，进行标记 
+           
+        for (int j = 0; j &lt; vertex_num; j++)  // 更新 dist 数组
+        {
+            if (visited[j] == false &amp;&amp;
+                matrix[min_cost_index][j] != INT_MAX &amp;&amp;  // 确保两点之间有边  
+                matrix[min_cost_index][j] + min_cost &lt; dist[j])   //从最小权值出发，找到与该最小权值出发相连的最短路径 matrix[min_cost_index][j]
+            {
+                dist[j] = matrix[min_cost_index][j] + min_cost;   //更新初始的dist数组 ，即是与上述最小权值出发相连的节点到源点的最短路径 
+                path[j] = min_cost_index;    //记录与j点直接相连的最短路径的前一点 
+            }
+        }
+    }
+}
+
+int main()
+{
+    cout &lt;&lt; &quot;请输入图的顶点数（&lt;100）：&quot;;
+    cin &gt;&gt; vertex_num;
+    cout &lt;&lt; &quot;请输入图的边数：&quot;;
+    cin &gt;&gt; edge_num;
+
+    for (int i = 0; i &lt; vertex_num; i++)
+        for (int j = 0; j &lt; vertex_num; j++)
+            matrix[i][j] = (i != j) ? INT_MAX : 0;  // 初始化 matrix 数组
+
+    cout &lt;&lt; &quot;请输入边的信息：\n&quot;;
+    int u, v, w;
+    for (int i = 0; i &lt; edge_num; i++)
+    {
+        cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+        matrix[u][v] = matrix[v][u] = w;
+    }
+
+    cout &lt;&lt; &quot;请输入源点（&lt;&quot; &lt;&lt; vertex_num &lt;&lt; &quot;）：&quot;;
+    cin &gt;&gt; source;
+    Dijkstra(source);
+
+    for (int i = 0; i &lt; vertex_num; i++)   //通过path数组输出源点到个点的最短 路径 
+    {
+        if (i != source)
+        {
+            cout &lt;&lt; source &lt;&lt; &quot; 到 &quot; &lt;&lt; i &lt;&lt; &quot; 的最短距离是：&quot; &lt;&lt; dist[i] &lt;&lt; &quot;，路径是：&quot; &lt;&lt; i;
+            int t = path[i];
+            while (t != source)
+            {
+                cout &lt;&lt; &quot;--&quot; &lt;&lt; t;
+                t = path[t];
+            }
+            cout &lt;&lt; &quot;--&quot; &lt;&lt; source &lt;&lt; endl;
+        }
+    }
+
+    return 0;
+}
 </code></pre>
+
+<h3 id="四-时间复杂度">四：时间复杂度</h3>
+
+<p>&nbsp;&nbsp;Dijkstra 算法最简单的实现方法是用一个数组来存储所有顶点的
+dist[]（即本程序采用的策略），所以搜索dist[]中最小元素的运算需要线性搜索
+O(n)。这样的话算法的运行时间是O(n<sup>2</sup>)。<br />
+&nbsp;&nbsp;对于边数远少于O(n<sup>2</sup>)的稀疏图来说，我们可以用邻接表来更有效的实现该算法，同时需要将一个二叉堆或者斐波纳契堆用作优先队列来查找最小的顶点。当用到二叉堆的时候，算法所需的时间为O((m+n)logn)，斐波纳契堆能稍微提高一些性能，让算法运行时间达到O(m+nlogn)。然而，使用斐波纳契堆进行编程，常常会由于算法常数过大而导致速度没有显著提高。</p>
+
+<p>关于O((m+n)logn)的由来，我简单的证明了下：</p>
+
+<ul>
+<li>把dist[]数组调整成最小堆，需要O(n)的时间；</li>
+<li>因为是最小堆，所以每次取出最小值只需O(1)的时间，接着把数组尾的数放置堆顶，并花费O(logn)的时间重新调整成最小堆；</li>
+<li>我们需要 n-1 次操作才可以找出剩下的 n-1 个点，在这期间，大约需要访问 m 次边，每次访问都可能造成dist[] 的改变，因此还需要O(logn)的时间来进行最小堆的重新调整（从当前dist[]改变的位置往上调整）。</li>
+</ul>
+
+<p>&nbsp;&nbsp;综上所述：总的时间复杂度为：O(n)+O(nlogn)+O(mlogn)=O((m+n)logn)<br />
+&nbsp;&nbsp;最后简单说下 Dijkstra 优化时二叉堆的两种实现方式：</p>
+
+<ul>
+<li>优先队列，把每个顶点的序号和其dist[]压在一个结构体再放进队列里；</li>
+<li>自己建一个小顶堆heap[]，存储顶点序号，再用一个数组pos[]记录第 i 个顶点在堆中的位置。</li>
+</ul>
+
+<p>相比之下，前者的编码难度较低，因此在平时编程甚至算法竞赛中，都是首选。</p>
+
+<h3 id="五-该算法的缺陷">五：该算法的缺陷</h3>
+
+<p>Dijkstra 算法有个巨大的缺陷，请考虑下面这幅图：</p>
+
+<p><img src="https://togiv.github.io/images/disktra4.png" alt="" /></p>
+
+<p>&nbsp;&nbsp;u→v间存在一条负权回路（所谓的负权回路，维基和百科并未收录其名词，但从网上的一致态度来看，其含义为：如果存在一个环（从某个点出发又回到自己的路径），而且这个环上所有权值之和是负数，那这就是一个负权环，也叫负权回路），那么只要无限次地走这条负权回路，便可以无限制地减少它的最短路径权值，这就变相地说明最短路径不存在。一个不存在最短路径的图，Dijkstra 算法无法检测出这个问题，其最后求解的dist[]也是错的。</p>
+
+<p>下一篇<a href="https://subetter.com/algorithm/bellman-ford-algorithm.html">Bellman_Ford 算法</a></p>
+
+<p>转载自：<a href="https://subetter.com/algorithm/dijkstra-algorithm.html">https://subetter.com/algorithm/dijkstra-algorithm.html</a><br />
+感谢原作者分享</p>
               
             </div>
           </div>
@@ -335,9 +439,9 @@ if __name__ == '__main__':
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/python/">python</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/dijkstra%E7%AE%97%E6%B3%95/">Dijkstra算法</a>
 
-  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a>
+  <a class="tag tag--primary tag--small" href="https://togiv.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
                   </div>
                 
@@ -350,7 +454,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/" data-tooltip="Dijkstra算法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/11/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B53/" data-tooltip="牛客练习赛53">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -358,7 +462,7 @@ if __name__ == '__main__':
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/" data-tooltip="线性回归中的正则化">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" data-tooltip="Python生成验证码">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -418,7 +522,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/11/dijkstra%E7%AE%97%E6%B3%95/" data-tooltip="Dijkstra算法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/11/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B53/" data-tooltip="牛客练习赛53">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -426,7 +530,7 @@ if __name__ == '__main__':
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/" data-tooltip="线性回归中的正则化">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://togiv.github.io/2019/10/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" data-tooltip="Python生成验证码">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -575,9 +679,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/togiv.github.io\/2019\/10\/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81\/';
+          this.page.url = 'https:\/\/togiv.github.io\/2019\/11\/dijkstra%E7%AE%97%E6%B3%95\/';
           
-            this.page.identifier = '\/2019\/10\/python%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81\/'
+            this.page.identifier = '\/2019\/11\/dijkstra%E7%AE%97%E6%B3%95\/'
           
         };
         (function() {
